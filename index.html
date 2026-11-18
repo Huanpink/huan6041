@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=5" name="viewport"/><meta content="dark" name="color-scheme"/><title>Bảng Khối Lab v3.3 — Cả ván + phong độ gần đây</title><style>
+:root{color-scheme:dark;--bg:#080d13;--panel:#121d29;--panel2:#0d1721;--line:#273a4b;--fg:#eaf2f6;--sub:#93adbf;--green:#42d4b9;--blue:#53a9f4;--red:#ff7182;--gold:#f3c87b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top right,#112232,#080d13 55%);color:var(--fg);font:14px/1.5 system-ui,-apple-system,'Segoe UI',sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{opacity:.35;cursor:not-allowed}h1,h2,h3,p{margin:0}h1{font-size:22px;letter-spacing:-.7px}h2{font-size:15px}h3{font-size:13px}label{cursor:pointer}small{color:var(--sub)}.shell{max-width:1490px;margin:auto;padding:20px 20px 70px}.header{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}.tag{display:inline-block;font-size:11px;color:var(--green);background:#12382f;border:1px solid #286c57;border-radius:100px;padding:3px 9px}.sub{color:var(--sub);font-size:12px}.tabs{display:flex;gap:6px;overflow:auto;border-bottom:1px solid var(--line);margin:17px 0 15px}.tabs button{border:0;color:var(--sub);background:transparent;padding:10px 13px;white-space:nowrap;font-weight:700;border-bottom:2px solid transparent}.tabs button.active{color:var(--fg);border-color:var(--green)}.tab{display:none}.tab.active{display:block}.layout{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(370px,.9fr);gap:15px}.panel{border:1px solid var(--line);background:var(--panel);border-radius:15px;padding:16px;margin-bottom:14px;min-width:0}.panelhead{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:11px}.hint{font-size:12px;color:var(--sub)}.flex{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.spread{justify-content:space-between}.btn{background:#1a2d3e;color:var(--fg);border:1px solid #355065;border-radius:10px;font-weight:700;padding:8px 11px;transition:.15s}.btn:hover:not(:disabled){background:#264357}.btn.primary{background:var(--green);border-color:var(--green);color:#08231f}.btn.slim{font-size:12px;padding:6px 8px}.btn.red{color:#ff9a9a}.entrybtn{font-size:20px;padding:11px 23px;border:0;border-radius:11px;color:white;font-weight:900}.entrybtn.B{background:#b93758}.entrybtn.P{background:#2477c0}.entrybtn.H{background:#168872}.select,.input,textarea{min-width:0;border:1px solid #354b60;border-radius:9px;padding:8px 10px;background:#0b1824;color:var(--fg)}.select{max-width:100%}textarea{width:100%;height:116px;resize:vertical}.roadWrap{overflow:auto;border-radius:12px;border:1px solid #253a4d;background:#0a1620;padding:7px}.road{display:grid;grid-auto-flow:column;grid-template-rows:repeat(6,40px);grid-auto-columns:40px;gap:5px;width:max-content}.cell{height:40px;width:40px;border-radius:8px;display:grid;place-items:center;font-weight:850;border:1px solid #244052;position:relative}.cell.empty{background:#11212f;color:#304454}.cell.B{background:#8e2d45;border-color:#ad4661}.cell.P{background:#1a598e;border-color:#3279b6}.cell.H{background:#187765;border-color:#289583}.cell.next{background:#133c38;color:var(--green);border:2px dashed var(--green)}.cell em{position:absolute;bottom:0;right:3px;font-size:8px;color:#ffffff8c;font-style:normal;font-weight:500}.signal{padding:16px;border:1px solid #2e5661;background:linear-gradient(120deg,#17313d,#13212c);border-radius:13px;margin-bottom:12px}.signal h2{color:var(--sub);font-weight:650}.hero{font-size:29px;font-weight:900;margin:4px 0 3px}.hero.B{color:var(--red)}.hero.P{color:var(--blue)}.hero.warn{color:var(--gold)}.chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}.chip{border:1px solid #355266;background:#0a1824;border-radius:8px;padding:5px 8px;font-size:11px}.chip strong{color:#fff}.alert{border:1px solid #7d5f37;background:#2b261d;color:#f2d19a;border-radius:9px;padding:9px 11px;font-size:12px;margin-top:10px}.ruleCard{border:1px solid #2c4050;border-radius:10px;padding:11px;margin:8px 0;background:#0e1b27}.ruleTop{display:flex;gap:10px;justify-content:space-between;align-items:flex-start}.ruleName{font-weight:800}.side{border:1px solid #3a5365;border-radius:9px;padding:7px 12px;font-size:20px;font-weight:850}.side.B{color:var(--red)}.side.P{color:var(--blue)}.side.off{color:var(--sub)}.pill{font-size:10px;background:#173044;color:#b1c6d8;border:1px solid #3b5969;border-radius:6px;padding:2px 6px}.pill.warn{color:var(--gold);border-color:#745937}.gridStats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}.stat{border:1px solid var(--line);background:#10202d;border-radius:11px;padding:11px}.stat b{font-size:21px;display:block}.stat span{font-size:11px;color:var(--sub)}.progress{height:7px;border-radius:9px;background:#2a3949;overflow:hidden;margin-top:7px}.progress>i{height:100%;display:block;background:var(--green)}.tableScroll{overflow:auto;max-width:100%}.table{width:100%;border-collapse:collapse;font-size:12px}.table th{text-align:left;white-space:nowrap;color:#bfd2e2;background:#1b2b3a;border-bottom:1px solid #416074;position:sticky;top:0;z-index:1}.table td,.table th{padding:10px 9px;border-bottom:1px solid #263b4a;vertical-align:top}.table tbody tr:hover{background:#18293a}.table .n{font-variant-numeric:tabular-nums}.table .B{color:var(--red);font-weight:850}.table .P{color:var(--blue);font-weight:850}.table .H{color:var(--green);font-weight:850}.table .bad{color:var(--red)}.table .good{color:var(--green)}.dim{color:var(--sub)}.tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0}.tools input[type=search]{width:220px}.tools input[type=number]{width:73px}.check{accent-color:var(--green);width:17px;height:17px}.scrollList{max-height:610px;overflow:auto}.mutedNote{font-size:12px;color:var(--sub);line-height:1.6;padding:11px;border:1px solid var(--line);background:#0e1a25;border-radius:10px;margin-top:9px}.footer{color:#7892a5;font-size:12px;line-height:1.6;margin-top:20px}.badge{font-size:11px;border-radius:7px;padding:3px 7px;background:#163c32;color:#8ce4c9}.fileLabel{border:1px dashed #4f7389;background:#123044;border-radius:10px;padding:10px;display:inline-block;cursor:pointer}.hide{display:none!important}.emptyState{color:var(--sub);text-align:center;padding:22px}.help{background:#101f2a;border:1px solid var(--line);border-radius:10px;padding:12px;color:#c2d3df;font-size:12px;line-height:1.6}#popup{position:fixed;right:16px;bottom:16px;background:#1b3b43;border:1px solid #40aa98;color:#dcfff2;padding:10px 14px;border-radius:10px;max-width:420px;box-shadow:0 15px 40px #0008;display:none;z-index:50}.running{color:var(--green)}
+@media(max-width:1000px){.layout{grid-template-columns:1fr}.shell{padding:13px 11px 55px}}@media(max-width:520px){.gridStats{grid-template-columns:repeat(2,1fr)}.cell,.road{--x:36px}.road{grid-template-rows:repeat(6,36px);grid-auto-columns:36px;gap:4px}.cell{width:36px;height:36px}.panel{padding:11px}.entrybtn{padding:10px 18px}.header h1{font-size:18px}.tools input[type=search]{width:100%}}
+
+/* compact status list for twelve rules */
+#currentRules .ruleCard{padding:8px 10px;margin:5px 0}
+#currentRules .chips{gap:5px;margin-top:6px}
+
+/* fixed 12-rule edition: hide all alternate preset and on/off controls */
+#coveragePresets,#activateThree,#onlyThree,#enableAll,#preset12,#preset20,#preset30,#disableAll,#onlyOn,.ruleCheckbox{display:none!important}
+
+/* v2.7: selectable 3/7/12/20/30 rule, compact mobile picker */
+.quickMode{padding:11px 12px!important;margin-bottom:10px!important;background:#0d1e2b}
+.quickMode .panelhead{margin-bottom:7px!important}
+.quickMode h2{font-size:12px}.modeRow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.modeBtn{background:#142b3b;border:1px solid #334f64;color:#d7e8f3;min-width:0;min-height:54px;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:4px;gap:2px}
+.modeBtn b{font-size:19px;line-height:1.1}.modeBtn small{font-size:10px;color:#9cbece}
+.modeBtn.selected{border-color:#4aded0;background:#153d40;color:#65ead4;box-shadow:inset 0 0 0 1px #33a999}
+.modeSummary{font-size:11.2px;line-height:1.5;margin-top:8px;color:#b1c9d8}.modeSummary strong{color:#f0f8fc}
+.comparison-panel .hint{margin-top:8px}
+.compareList{display:grid;gap:7px}
+.compareCard{width:100%;background:#0f2331;color:#e8f3fc;border:1px solid #324d61;border-radius:11px;padding:11px;display:grid;grid-template-columns:1fr auto 72px;align-items:center;gap:12px;text-align:left}
+.compareCard.selected{border-color:#4ad3bd;background:#133a3b}.compareCard strong{font-size:16px}.compareCard small{display:block;font-size:10.5px;color:#98b6c9}.compareNum{text-align:right}.compareNum b{font-size:19px;color:#e8f3fc}.compareArrow{font-size:10px;text-align:center;color:#9bd8ce;font-weight:800}
+.rulePicker{display:grid;gap:8px;max-height:62vh;overflow-y:auto;overscroll-behavior:contain;padding:2px 2px 5px}
+.pickCard{display:flex;gap:10px;align-items:flex-start;border:1px solid #304758;border-radius:11px;padding:11px;background:#101f2e;cursor:pointer;min-width:0}
+.pickCard.selected{background:#112c31;border-color:#377e77}
+.pickCard input.ruleCheckbox{display:block!important;accent-color:#47d8b8;width:20px;height:20px;flex:none;margin:2px 0}
+.pickContent{flex:1;min-width:0}.pickTop{display:flex;flex-wrap:wrap;align-items:baseline;gap:7px;margin-bottom:7px}.pickTop strong{font-size:13px}.pickTag{font-size:10.5px;color:#aac4d3}
+.pickNumbers{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px}.pickNumbers>span{display:flex;flex-direction:column;min-width:0}.pickNumbers b{font-size:14px;color:#e6f1fb;white-space:nowrap}.pickNumbers small{font-size:9px;white-space:nowrap;color:#8ba7b8}
+.pickDetail{font-size:10px;margin-top:7px;color:#9cbacc}.pickDetail p{margin:5px 0}.pickDetail summary{cursor:pointer}
+.ruleTools{margin:9px 0!important}.ruleTools .input{min-width:160px;flex:1}.ruleTools .select{max-width:100%}
+@media(max-width:520px){.quickMode{margin-top:2px!important}.modeBtn{min-height:51px}.modeBtn b{font-size:17px}.modeBtn small{font-size:9.4px}.pickNumbers b{font-size:13px}.pickNumbers small{font-size:8.5px}.compareCard{grid-template-columns:1fr auto 56px;gap:6px}.compareNum b{font-size:18px}}
+@media(min-width:800px){.rulePicker{grid-template-columns:repeat(2,minmax(0,1fr));max-height:70vh}.compareList{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* v3.0 rolling-window controls; do not change prediction engine */
+.windowPanel{margin:4px 0 12px;padding:11px;border-radius:12px;border:1px solid #355566;background:#0b202c}
+.windowHeader{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;margin-bottom:9px}
+.windowHeader strong{font-size:12px}
+.windowOptions{display:flex;gap:5px;flex-wrap:wrap}
+.windowBtn{border:1px solid #345268;border-radius:8px;background:#142d3b;color:#b6cfde;padding:8px 11px;font-size:12px;font-weight:750;cursor:pointer}
+.windowBtn.selected{background:#13564f;border-color:#36c3ad;color:#eafffa}
+.windowCaption{font-size:10.5px;color:#a1bccb;margin:7px 0 0}
+.stageReveal{border-top:1px solid #2e4857;margin-top:12px;padding-top:9px}
+.stageReveal summary{font-size:11.5px;font-weight:800;color:#bad9e4;cursor:pointer}
+.stageTable{width:100%;font-size:11px;border-collapse:collapse;margin-top:8px}
+.stageTable th,.stageTable td{padding:7px 5px;border-bottom:1px solid #294350;text-align:left}
+.stageTable th{color:#8faab9}
+.periodCount{color:#88b4c5;font-size:10px}
+.periodInfo{color:#a9c4d0;font-size:11px;margin-bottom:5px}
+.modeWindowCount{color:#94c7cf;font-size:10px}
+.pickWindow{color:#a6d8e0;font-size:11px;margin:6px 0}
+@media(max-width:430px){.windowBtn{padding:8px 9px}.windowPanel{padding:8px}.stageTable{font-size:10px}}
+
+/* v3.1 automatic, walk-forward selection */
+.autoPanel{border-color:#2d6770;background:linear-gradient(135deg,#102c36,#101e2d)}
+.autoHeader{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.autoToggle{min-width:110px}
+.autoStatus{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:9px 10px;border-radius:10px;background:#0a1d28;border:1px solid #2b5360;margin:9px 0}
+.autoStatus .main{font-size:16px;font-weight:850;color:#c9f5ee}
+.autoStatus .desc{font-size:11px;color:#9ab7c4;margin-top:3px;line-height:1.5}
+.autoStatus .side{font-size:11px;text-align:right;color:#c6d6e2;flex-shrink:0}
+.autoStat{font-size:11px;color:#a7c3d0;line-height:1.55;margin-top:6px}
+.autoGrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin-top:10px}
+.autoMini{border:1px solid #294657;border-radius:9px;padding:8px;background:#0c2130;min-width:0}
+.autoMini.leader{border-color:#31bda9;background:#153c3c}
+.autoMini .n{font-size:11px;font-weight:800;color:#f0f8fc}
+.autoMini .r{font-size:17px;font-weight:900;color:#e6f3f8;margin:2px 0}
+.autoMini .m{font-size:9.5px;line-height:1.55;color:#a4c0cf;overflow-wrap:anywhere}
+.autoMini .good{color:#70e0c3}.autoMini .poor{color:#f2a3a6}
+.autoMini .tiny{font-size:9px;color:#f0cc8b}
+.autoNotes{font-size:10.5px;color:#8bafbd;margin-top:8px;line-height:1.55}
+@media(max-width:650px){.autoGrid{display:flex;overflow:auto;gap:7px;-webkit-overflow-scrolling:touch}.autoMini{flex:0 0 108px}.autoStatus .main{font-size:15px}.autoPanel{padding:12px!important}}
+
+body.auto-on #quickMode,body.auto-on .mobile-mini-note{display:none!important}
+.autoDetails{margin-top:7px;border-top:1px solid #274b56;padding-top:2px}
+.autoDetails[open]>.autoGrid{padding-bottom:8px}
+.autoPanel .autoNotes{margin-top:6px;font-size:10px}
+@media(max-width:680px){.autoPanel .autoHeader h2{font-size:11px;line-height:1.4}.autoPanel .autoStatus{padding:8px}.autoPanel .autoStat{font-size:10px}}
+
+/* v3.3: compact whole-board + adaptive recent health + upcoming signal; no form overflow */
+body.auto-on #quickMode{display:block!important}
+.modeRow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px}
+.modeBtn{min-height:132px!important;padding:9px!important;gap:6px!important;align-items:stretch!important;justify-content:flex-start!important;overflow:hidden;contain:layout style;text-align:left}
+.modeTop,.modeFull,.modeRecent{display:flex;width:100%;min-width:0;justify-content:space-between;align-items:center;gap:5px}
+.modeTop .modeTag{white-space:nowrap;font-size:11px}
+.modeNext{max-width:75px;min-width:29px;text-align:center;padding:2px 5px;border-radius:6px;font-size:10px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border:1px solid #476278;background:#0c1d2a;color:#b2cbda}
+.modeNext.B{color:#ff94a4;border-color:#914c64}.modeNext.P{color:#81befc;border-color:#436f9c}.modeNext.conflict{color:#ffcb8d;border-color:#aa7045;font-size:8px}.modeNext.wait{color:#aac1cf}
+.modeFull strong{font-size:24px!important;line-height:1.05;letter-spacing:-.7px;color:#eef9fb;font-variant-numeric:tabular-nums}
+.modeBtn.selected .modeFull strong{color:#63e9d1}
+.modeFull span{font-size:9px;color:#a9c0d0;white-space:nowrap}
+.modeRecent{background:#0d2532;border-radius:6px;padding:4px 5px}
+.modeRecent span{font-size:9px;color:#afc7d4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.modeRecent strong{font-size:13px!important;color:#e7f3f8;white-space:nowrap;line-height:1.1;font-variant-numeric:tabular-nums}
+.modeRecent em{font-style:normal;font-weight:500;font-size:9px;color:#afc4d1}
+.modeBottom{font-size:10px;font-weight:750;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#a6bdcc}
+.modeBottom.good{color:#6be2bf}.modeBottom.warm{color:#eac77f}.modeBottom.weak{color:#ff9a9e}.modeBottom.small{color:#d6b989}.modeBottom.empty{color:#90a5b6}
+.modeHiddenHistory{display:none}
+@media(max-width:1100px){.modeRow{display:flex;overflow-x:auto;gap:7px;padding:1px 1px 6px;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scroll-snap-type:x proximity}.modeBtn{flex:0 0 184px!important;max-width:184px;scroll-snap-align:start}}
+@media(max-width:360px){.modeBtn{flex-basis:174px!important;max-width:174px}.modeFull strong{font-size:22px!important}}
+</style><meta content="yes" name="apple-mobile-web-app-capable"/><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/><meta content="#071019" name="theme-color"/><meta content="yes" name="mobile-web-app-capable"/><style>
+/* iPhone UI edition: visual changes only; core prediction logic unchanged. */
+:root{--bg:#080e15;--panel:#111c28;--panel2:#0b1722;--line:#24364a;--fg:#ecf3fa;--sub:#90a5b6;--green:#48d8c1;--blue:#63b1ff;--red:#ff6883;--gold:#f3c884}
+body{background:#080e15; -webkit-font-smoothing:antialiased}
+button,input,select,textarea{-webkit-tap-highlight-color:transparent}
+button{touch-action:manipulation}
+.brand-mark{display:inline-flex;width:33px;height:33px;border-radius:10px;background:#0d3e43;color:#58e0c9;align-items:center;justify-content:center;margin-right:4px}
+.brand-accent{color:var(--green)}.edition{font-size:12px;letter-spacing:0;font-weight:650;color:#b3cbd5;padding:5px 9px;border:1px solid #2a4957;border-radius:30px;vertical-align:middle;margin-left:6px;white-space:nowrap}
+.mobile-mini-note{display:none}
+#tab-main>#heroSignal{max-width:100%}
+#heroSignal{border:1px solid #365e67;background:linear-gradient(130deg,#14353e,#10232e);padding:17px 20px;border-radius:16px}
+#heroSignal .hero{font-size:34px;letter-spacing:-1.2px;line-height:1.16}
+#heroSignal h2{font-size:11px;letter-spacing:.9px;font-weight:850}
+#heroSignal .alert{font-size:11px;line-height:1.5;background:#102229;border-color:#2d5a5c}
+#currentRules .ruleCard.rule-active{border-color:#448576;background:#0e2b30}
+#currentRules .ruleCard.rule-idle{opacity:.85}
+#currentRules .ruleCard.rule-idle .chips{display:none}
+body.hide-idle #currentRules .rule-idle{display:none}
+#toggleIdleRules{flex-shrink:0}
+.ruleName .pill{display:inline-block;white-space:normal}
+#boardSelect{flex:1;min-width:130px}
+@media (min-width: 1001px){#tab-main .layout{margin-top:13px}}
+@media (max-width: 1000px){
+  .shell{padding:12px 13px 76px;max-width:650px}
+  .header{gap:6px;align-items:start}
+  .header>.sub{font-size:11px}
+  .tabs{position:sticky;top:0;z-index:20;background:#08121de8;backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);padding:2px 0;margin:12px -13px 12px;border-bottom:1px solid #30445a;justify-content:space-around}
+  .tabs button{flex:1;min-width:0;font-size:12px;padding:13px 4px;font-weight:750;min-height:47px}
+  .tab.active{display:block}
+  #tab-main .layout{display:flex;flex-direction:column;gap:0}
+  #tab-main .layout>div{display:contents}
+  #tab-main .board-panel{order:1}
+  #tab-main .rules-panel{order:2}
+  #tab-main .stats-panel{order:3}
+  #tab-main .mode-panel{order:4}
+  #tab-main .entry-panel{order:5}
+  #heroSignal{margin-bottom:11px}
+  .mobile-mini-note{display:block;color:var(--sub);font-size:11px;margin:-3px 3px 10px}
+  .panel{margin-bottom:10px;border-radius:14px}
+  #tab-main .panelhead{gap:4px}
+  .roadWrap{overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:#345568 transparent}
+  #tab-main .entry-panel{position:fixed;left:0;right:0;bottom:0;width:100%;z-index:30;margin:0;padding:9px max(11px,env(safe-area-inset-right)) calc(9px + env(safe-area-inset-bottom)) max(11px,env(safe-area-inset-left));background:linear-gradient(180deg,#10202bef,#101a26 30%);border:1px solid #30465c;border-radius:14px 14px 0 0;box-shadow:0 -12px 40px #000b;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+  #tab-main .entry-panel .panelhead{margin:0 0 6px;display:flex;justify-content:space-between}
+  #tab-main .entry-panel .panelhead h2{font-size:12px}
+  #mobileNextNumber{color:var(--green);font-size:12px}
+  #tab-main .entry-panel>.flex{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,.75fr) 43px 43px;gap:6px}
+  #tab-main .entry-panel .entrybtn{width:100%;height:52px;font-size:22px;padding:0;border-radius:11px;line-height:1}
+  #tab-main .entry-panel .btn{font-size:0;height:52px;padding:0;width:43px;display:flex;align-items:center;justify-content:center}
+  #tab-main .entry-panel #undo:before{content:'↶';font-size:25px}
+  #tab-main .entry-panel #redo:before{content:'↷';font-size:25px}
+  #tab-main .entry-panel>p{display:none}
+  #tab-main{padding-bottom:calc(107px + env(safe-area-inset-bottom))}
+  #tab-main .road{grid-template-rows:repeat(6,42px);grid-auto-columns:42px;gap:4px}
+  #tab-main .cell{width:42px;height:42px;border-radius:9px;font-size:15px}
+  #tab-main .roadWrap{padding:5px}
+  #tab-main .panel{padding:12px}
+  .ruleCard .ruleTop .side{min-width:54px;text-align:center}
+  #currentRules{max-height:none}
+  .entry-panel button:disabled{filter:grayscale(.45);opacity:.38}
+  .tableScroll{max-width:100%;-webkit-overflow-scrolling:touch}
+  .table{min-width:640px}
+  #tab-stats .table{min-width:600px}
+  #tab-rules .table{min-width:780px}
+  .fileLabel{display:inline-flex;min-height:45px;align-items:center}
+  #tab-data .btn, #tab-data .select, #tab-data .fileLabel{min-height:44px}
+  .footer{margin-top:10px;padding-bottom:10px}
+}
+@media(max-width:520px){
+  .shell{padding:9px 11px 78px}
+  .header h1{font-size:20px}
+  .edition{font-size:10px;padding:3px 7px}
+  .header>.sub{display:none}
+  .tabs{margin:10px -11px 11px}
+  .tabs button{font-size:11.4px}
+  .gridStats{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+  .stat b{font-size:19px}
+  .stat span{font-size:10px}
+  #heroSignal{padding:14px;margin-bottom:9px}
+  #heroSignal .hero{font-size:30px}
+  #heroSignal .alert{padding:8px;margin-top:9px}
+  #heroSignal .chips{gap:5px;margin-top:6px}
+  #heroSignal .chip{font-size:11px;padding:4px 7px}
+  #tab-main .board-panel .flex{gap:5px}
+  #tab-main .board-panel .btn{padding:8px 9px;min-height:38px}
+  #boardSelect{max-width:100%;min-width:0;width:100%;flex:1 1 100%;height:40px}
+  #tab-main .board-panel .panelhead small{font-size:10px}
+  #tab-main .road{grid-template-rows:repeat(6,43px);grid-auto-columns:43px;gap:4px}
+  #tab-main .cell{width:43px;height:43px}
+  #tab-main .entry-panel{padding:8px 10px calc(8px + env(safe-area-inset-bottom))}
+  #tab-main .entry-panel .entrybtn,#tab-main .entry-panel .btn{height:53px}
+  #tab-main .rules-panel .panelhead h2{font-size:13px}
+  #currentRules .ruleCard{padding:10px 9px}
+  .ruleName{font-size:12px}
+  .pill{font-size:9px}
+  #currentRules .chip{font-size:10px}
+  .tools{gap:7px}
+  #ruleSearch{width:100%}
+  #ruleOrder{flex:1}
+}
+@media(max-width:360px){
+  #tab-main .entry-panel>.flex{grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,.7fr) 36px 36px;gap:4px}
+  #tab-main .entry-panel .btn{width:36px}
+  .tabs button{font-size:10.5px}
+  .edition{display:block;width:max-content;margin:6px 0 0}
+}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+/* v2.6: iPhone main tab = signal, grid, active rules, short performance */
+#tab-main .layout{grid-template-columns:minmax(0,1fr)}
+#tab-main .live-rules-panel{min-width:0}
+.signalCaution{font-size:10.5px;margin-top:9px;color:#9bb4c4}
+.liveRuleCards{display:grid;gap:6px}
+.liveRule{display:grid;grid-template-columns:minmax(0,1fr) 43px;align-items:center;gap:8px;padding:9px 10px;border:1px solid #2a4552;border-radius:10px;background:#0e2230}
+.liveRuleName{font-size:12px;font-weight:850;display:flex;gap:7px;align-items:baseline;flex-wrap:wrap}
+.liveRuleMeta{font-size:10.5px;color:#91aec0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:2px}
+.liveRuleResult{border:1px solid #36556a;border-radius:9px;font-size:19px;font-weight:900;text-align:center;padding:6px 0}
+.liveRuleResult.B{color:var(--red)}.liveRuleResult.P{color:var(--blue)}
+#tab-rules .mode-panel,#tab-rules .rules-panel{margin-bottom:11px}
+#tab-rules #currentRules{max-height:390px;overflow:auto}
+#tab-rules #currentRules .ruleCard{padding:9px;margin:6px 0}
+@media(max-width:1000px){
+  #tab-main .layout>div{display:contents}
+  #tab-main .board-panel{order:1}
+  #tab-main .live-rules-panel{order:2}
+  #tab-main .stats-panel{order:3}
+  #tab-main .entry-panel{order:5}
+  #tab-rules .panel{padding:12px}
+  #tab-rules #currentRules{max-height:370px}
+  #tab-main .entry-panel{z-index:35}
+}
+@media(max-width:390px){.tabs button{font-size:10.7px;padding-left:2px;padding-right:2px}.liveRuleMeta{font-size:10px}}
+
+
+/* v2.8: live rule health, deliberately retrospective—not a win-probability indicator */
+.healthOverview{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin:11px 0}
+.healthOverview>span{padding:9px;border:1px solid #334659;background:#0d1c29;border-radius:9px;min-width:0}
+.healthOverview b{font-size:19px;display:block;line-height:1.1;font-variant-numeric:tabular-nums}
+.healthOverview small{font-size:10px;line-height:1.25;display:block;margin-top:5px}
+.topLiveRules{margin:0 0 13px}.topHead{font-size:12px;font-weight:750;margin:8px 0}.topHead small{font-weight:400}
+.topGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.topOne{background:#10212d;border:1px solid #395266;border-radius:10px;padding:9px;display:flex;flex-direction:column;gap:7px}
+.topOne>div:nth-child(2){display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}.topOne strong{font-size:18px}
+.topOne .btn{align-self:flex-start;margin-top:auto}
+.noTop{font-size:12px;padding:9px;border:1px dashed #415365;border-radius:9px;color:#a8bdce}
+.healthFlag{display:inline-block;border:1px solid #536275;border-radius:7px;padding:2px 6px;font-size:10px;font-weight:800;white-space:nowrap;color:#afc1cf;background:#182936}
+.healthFlag.good{color:#89e2cc;border-color:#3a8d78;background:#13352f}.healthFlag.weak{color:#ffaaaa;border-color:#a65c67;background:#36222d}
+.healthFlag.streak{color:#f1ce90;border-color:#806b47;background:#332b20}.healthFlag.slump{color:#ffaaaa;border-color:#a65c67;background:#36222d}
+.healthFlag.small{color:#f1ce90;border-color:#806b47;background:#332b20}.healthFlag.neutral{color:#b8d2e8;border-color:#54697d}
+.nowFlag{font-size:10px;font-weight:800;border-radius:6px;padding:2px 6px;border:1px solid #457a94}.nowFlag.B{color:#ff8798}.nowFlag.P{color:#77baff}
+.pickCard.currently-good{border-left:3px solid #4eb99f}
+.pickPrimary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:8px 0}
+.pickPrimary>div{padding:7px 6px;background:#0b1b28;border:1px solid #2d4051;border-radius:8px;min-width:0}
+.pickPrimary b{font-size:17px;display:block;white-space:nowrap;font-variant-numeric:tabular-nums}
+.pickPrimary small{display:block;font-size:10px;color:#a2b8c8;line-height:1.3}
+.pickSecondary{font-size:10px;color:#8faaba;display:flex;gap:7px;flex-wrap:wrap;margin-top:7px}
+.pickSecondary b{color:#c4d5e2}.pickTag{display:block;line-height:1.4;margin-top:4px}
+.ruleTrend{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:4px}
+.trend{display:inline-flex;gap:3px;align-items:center}
+.trend i{display:inline-grid;place-items:center;width:22px;height:22px;border:1px solid;border-radius:5px;font-size:13px;font-style:normal;font-weight:800}
+.trend i.win{color:#83e7c7;border-color:#387864;background:#14342d}.trend i.loss{color:#ff9aa7;border-color:#8d4252;background:#39212c}
+.trendEmpty,.mutedMeta{font-size:10px;color:#98acbd}
+.liveRule .healthFlag{font-size:9px;padding:2px 5px}.liveRule .trend{margin-top:6px}
+#tab-rules.tab.active{display:flex;flex-direction:column}#tab-rules>.comparison-panel{order:2}#tab-rules>.panel:not(.comparison-panel){order:1}
+@media(max-width:680px){.topGrid{grid-template-columns:1fr}.topOne{padding:10px}.healthOverview{grid-template-columns:repeat(2,minmax(0,1fr))}.pickPrimary b{font-size:15px}.pickPrimary small{font-size:9.4px}.pickCard{gap:8px;padding:10px}.rulePicker{max-height:75vh}}
+
+/* v3.0: compact, live-on-this-board comparison of all five presets */
+.quickMode .panelhead{margin-bottom:8px!important}
+.modeRow{grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.modeBtn{min-height:96px;display:flex;flex-direction:column;align-items:stretch;text-align:left;justify-content:center;padding:8px 7px;gap:1px;position:relative}
+.modeTag{font-size:10.5px;font-weight:850;letter-spacing:.1px;color:#d7eaf4}
+.modePct{font-size:24px;line-height:1.28;font-weight:900;font-variant-numeric:tabular-nums;color:#e7f3fa}
+.modeBtn .modeFraction,.modeBtn .modeHistorical{font-size:9px;color:#9cb8c8;white-space:nowrap;line-height:1.45}
+.modeBtn .modeHistorical{color:#7499ad}
+.modeBtn.selected .modeTag,.modeBtn.selected .modePct{color:#68ebd5}
+.modeBtn.enough-good:not(.selected) .modePct{color:#67d6bd}
+.modeBtn.enough-low:not(.selected) .modePct{color:#f7b18b}
+.modeBtn .modeSmall{font-size:8.7px;color:#edd0a0;white-space:nowrap}
+.quickMode .modeSummary{border-top:1px solid #263f50;padding-top:7px;line-height:1.6}
+@media(max-width:720px){
+ .modeRow{display:flex;overflow-x:auto;scroll-snap-type:x proximity;gap:7px;padding-bottom:4px;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+ .modeBtn{flex:0 0 110px;min-height:96px;scroll-snap-align:start}
+ .modePct{font-size:24px}
+}
+@media(max-width:360px){.modeBtn{flex-basis:103px}.modePct{font-size:22px}}
+
+.activeBoardBanner{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-bottom:10px;padding:9px 12px;border:1px solid #2a6d6a;border-radius:10px;background:#0f292c;color:#d5f6ed;font-size:12px}
+.activeBoardBanner>b{font-size:14px}.activeBoardBanner>span:last-child{margin-left:auto;font-size:10px;color:#8fe5c8;font-weight:700}
+.boardPulse{width:8px;height:8px;background:#36cbb1;border-radius:50%;display:inline-block;box-shadow:0 0 0 3px #36cbb126}
+.autoCurrent{font-size:11px;padding:7px 10px;border:1px solid #335d60;border-radius:8px;color:#a6dcd4;margin-top:9px;background:#0b242c}
+.autoCurrent strong{color:#cbfff3}
+@media(max-width:520px){.activeBoardBanner{font-size:11px}.activeBoardBanner>span:last-child{width:100%;margin-left:14px}}
+</style><link href="lab-manifest.webmanifest" rel="manifest"/><link href="lab-icon-192.png" rel="apple-touch-icon"/></head><body data-version="v3.3"><div class="shell">
+<header class="header"><div><small>BẢNG KHỐI • TỰ KIỂM TRA • OFFLINE</small><h1><span class="brand-mark">◈</span> KHỐI <span class="brand-accent">LAB</span> <span class="edition">iPhone · v3.3 · PHONG ĐỘ</span></h1></div><span class="sub">Chọn trực tiếp bộ rule · Thống kê cập nhật ngay</span></header>
+<div aria-label="Điều hướng" class="tabs"><button class="active" data-tab="main">Bảng chính</button><button data-tab="rules">Chọn rule</button><button data-tab="stats">Đúng / sai</button><button data-tab="data">Dữ liệu</button></div>
+<section class="tab active" id="tab-main"><div id="activeBoardBanner" class="activeBoardBanner" aria-live="polite">Bàn hiện tại · đang tải…</div><div class="signal" id="heroSignal"><h2>TÍN HIỆU CHO LƯỢT KẾ TIẾP</h2><div class="hero warn" id="signalTitle">CHỜ</div><div class="hint" id="signalDesc">Chưa có rule kích hoạt</div><div class="chips" id="voteChips"></div><div class="hint signalCaution">% lịch sử không phải xác suất thắng bàn mới · Chỉ dùng để kiểm nghiệm.</div></div>
+<div class="quickMode panel" id="quickMode"><div class="panelhead"><h2>5 bộ rule · cả ván & gần đây</h2><button class="btn slim" id="viewModeDetails" type="button">Xem so sánh</button></div>
+<details class="windowWrap"><summary class="hint" style="cursor:pointer;padding:3px 0 7px">Tự xem từng khoảng tay (tùy chọn)</summary><div class="windowPanel" id="windowPanel"><div class="windowHeader"><strong>Phong độ gần đây — số tay</strong><span class="periodCount" id="windowMeta">Đang tính</span></div><div class="windowOptions" id="windowOptions"><button type="button" class="windowBtn" data-lookback="0">Cả bàn</button><button type="button" class="windowBtn" data-lookback="5">5 tay</button><button type="button" class="windowBtn" data-lookback="10">10 tay</button><button type="button" class="windowBtn" data-lookback="15">15 tay</button><button type="button" class="windowBtn" data-lookback="20">20 tay</button></div><p class="windowCaption">Đếm đúng số tay thực tế (kể cả Hòa); tỷ lệ đúng chỉ tính những lượt có dự đoán B/P không xung đột. “—” = chưa có tín hiệu để chấm.</p></div></details>
+<div class="modeRow" id="modeButtons" aria-live="polite" aria-label="Tỷ lệ đúng hiện tại của 5 bộ rule, tự cập nhật khi nhập kết quả"></div>
+<div class="modeSummary" id="modeSummary"></div><details class="stageReveal"><summary>Phân tích từng đoạn của bàn (1–20 / 21–40 / từ 41)</summary><div id="stageStats"></div></details>
+</div><div class="autoPanel panel" id="autoPanel"><div class="autoHeader"><h2>AUTO · CHỈ KIỂM TRA BÀN ĐANG CHỌN</h2><button class="btn slim autoToggle" id="autoToggle" type="button">AUTO · BẬT</button></div>
+<div class="autoCurrent" id="autoCurrent" aria-live="polite">Chưa chọn bàn</div><div class="autoStatus" id="autoStatus" aria-live="polite"><div class="main">Đang đánh giá…</div></div>
+<div class="autoStat" id="autoStat"></div><details class="autoDetails"><summary style="cursor:pointer;font-size:11px;color:#b6d7df;padding:6px 0">5 bộ rule · phong độ chỉ trên bàn này (chạm để thu gọn)</summary><div class="autoGrid" id="autoGrid"></div></details>
+<p class="autoNotes">Chỉ dùng kết quả của <b>bàn đang chọn</b>, không gộp các bàn trước. Mỗi bộ tự mở rộng 10 → 20 → 30 tay → cả bàn để tìm ít nhất 3 tín hiệu B/P đã chấm. Chỉ xét những kết quả xuất hiện <b>trước</b> lượt tiếp theo. 1–2 tín hiệu luôn là <b>ít mẫu</b>; bộ đang đứng đầu chưa chắc đoán đúng lượt sau. Khi không có bộ đạt ngưỡng, AUTO báo CHỜ.</p></div>
+<span class="mobile-mini-note">Tỷ lệ cập nhật sau mỗi B / P / H · Chạm để chọn bộ · Mẫu ít chỉ có tính tham khảo</span><div class="layout"><div>
+<div class="panel board-panel"><div class="panelhead"><h2>Bảng khối 6 hàng</h2><small id="boardMeta"></small></div><div class="flex" style="margin-bottom:12px"><select class="select" id="boardSelect"></select><button class="btn slim" id="boardNew">+ Bàn mới</button><button class="btn slim" id="boardRename">Đổi tên</button><button class="btn slim red" id="boardClear">Xóa dữ liệu</button></div><div class="roadWrap" id="roadWrap"><div class="road" id="road"></div></div><div class="flex spread" style="margin-top:11px"><small id="boardSummary">Chưa có dữ liệu.</small><small>Ô xanh nét đứt = lượt tiếp theo</small></div></div>
+<div class="panel live-rules-panel" id="liveRulesPanel" style="display:none"><div class="panelhead"><h2>Rule đang báo tín hiệu</h2><button class="btn slim" id="gotoRuleSettings" type="button">Xem tất cả →</button></div><div class="liveRuleCards" id="liveRuleCards"></div></div>
+<div class="panel entry-panel"><div class="panelhead"><h2>Nhập kết quả thực tế</h2><span class="hint"><strong id="mobileNextNumber"></strong></span></div><div class="flex"><button class="entrybtn B" id="addB">B</button><button class="entrybtn P" id="addP">P</button><button class="entrybtn H" id="addH">H</button><button class="btn" id="undo">↶ Hoàn tác</button><button class="btn" id="redo">↷ Làm lại</button></div><p class="hint" style="margin-top:10px">Nhập theo thứ tự từ trên xuống, đủ 6 hàng thì sang cột mới. Có thể nhập B/P/H bằng bàn phím trên máy tính.</p></div>
+<div class="panel stats-panel"><div class="panelhead"><h2>Hiệu quả ngay trên bàn này</h2><button class="btn slim" id="goStats">Xem chi tiết</button></div><div class="gridStats" id="mainStats"></div><div class="mutedNote" id="currentWarning"></div></div>
+</div></div></section>
+<section class="tab" id="tab-rules">
+<div class="panel comparison-panel"><div class="panelhead"><h2>So sánh 5 bộ rule</h2><small>Chạm bộ muốn dùng</small></div>
+<div class="compareList" id="compareList"></div>
+<p class="hint">Con số lớn “Bàn này” cập nhật ngay khi nhập B/P/H hoặc đổi bàn; số 12 bàn cũ để đối chiếu. Nếu ít tín hiệu, tỷ lệ có thể biến động mạnh.</p></div>
+
+
+
+<div class="panel">
+<div class="panelhead"><h2>Chọn từng rule · cập nhật trực tiếp</h2><span class="hint" id="enabledCount">12 đang bật</span></div>
+<p class="hint" id="liveBoardCaption">Các số ở <b>Bàn này</b> được tính lại mỗi khi thêm B/P/H, hoàn tác hoặc đổi bàn. Tỷ lệ lịch sử 40/12/CV là cố định; không phải xác suất thắng lượt tiếp.</p>
+ <div id="healthOverview" class="healthOverview" aria-live="polite"></div>
+ <div id="liveRuleTop" class="topLiveRules"></div>
+ <p class="hint" style="margin-top:9px">Nhãn <b>Tốt gần đây</b> chỉ dựa trên kết quả của bàn đang xem: có ít nhất 5 lần B/P đã chấm, đúng ít nhất 4/5 tín hiệu gần nhất và đúng tổng cộng ít nhất 65%. Không khẳng định lượt tiếp theo sẽ đúng.</p>
+<div class="tools ruleTools"><input class="input" id="ruleSearch" placeholder="Tìm BK047, chéo, bệt…" type="search"/><select class="select" id="ruleOrder"><option value="recentPct">% trong cửa sổ đang chọn</option><option value="currentHealth">Phong độ cả bàn (tốt trước)</option><option value="testPct">% đúng 12 bàn (cao nhất)</option><option value="testN">Nhiều tín hiệu đối chiếu</option><option value="cvPct">% kiểm tra chéo (CV)</option><option value="currentPct">% bàn này (nhiều mẫu ưu tiên)</option><option value="last5">5 tín hiệu gần nhất</option><option value="currentN">Nhiều tín hiệu trên bàn này</option><option value="activeNow">Đang báo B/P lượt kế tiếp</option><option value="id">Theo mã BK</option></select><select class="select" id="ruleFilter"><option value="all">Tất cả 30 rule</option><option value="now">Đang báo B/P lượt tới</option><option value="seen">Đã có tín hiệu bàn này</option><option value="seen3">≥3 tín hiệu B/P bàn này</option><option value="good">Tốt gần đây (≥5 mẫu)</option><option value="enabled">Chỉ rule đang bật</option></select></div>
+<div class="rulePicker" id="rulePicker"></div>
+</div></section>
+<section class="tab" id="tab-stats"><div class="panel"><div class="panelhead"><h2>Đúng / sai trên bàn đang chọn</h2><button class="btn slim" id="exportRoundCsv">Xuất CSV đúng/sai</button></div><div class="gridStats" id="statsCards"></div><div class="mutedNote">Kết quả được tính lại theo bộ rule bạn chọn (không đảo B/P). Tỷ lệ bàn này theo từng rule và tỷ lệ gộp mỗi lượt là hai chỉ số khác nhau. Hòa được lưu riêng, không tính trong mẫu số đúng/sai B/P.</div><div class="tableScroll" style="max-height:420px;margin-top:10px"><table class="table"><thead><tr><th>Rule</th><th>Đúng</th><th>Sai</th><th>Hòa</th><th>Tổng tín hiệu B/P</th><th>% bàn này</th><th>% 12 bàn cũ</th></tr></thead><tbody id="statsRules"></tbody></table></div></div><div class="panel"><div class="panelhead"><h2>Chi tiết dự đoán từng lượt</h2><span class="hint">Mới nhất lên trên</span></div><div class="tableScroll" style="max-height:540px"><table class="table"><thead><tr><th>Lượt</th><th>Rule</th><th>Dự đoán</th><th>Thực tế</th><th>Đúng/sai</th><th>Điều kiện</th></tr></thead><tbody id="historyRows"></tbody></table></div></div></section>
+<section class="tab" id="tab-data"><div class="layout"><div><div class="panel"><div class="panelhead"><h2>Đánh thử từng lượt trên 12 bản ghi lịch sử</h2><span class="pill">Không phải bàn mới độc lập</span></div><select class="select" id="demoSelect" style="width:100%"></select><div class="tools"><button class="btn primary" id="demoOpen">Mở bàn thử từ đầu</button><button class="btn" id="demoPrev">← Trước</button><button class="btn" id="demoNext">Bước tiếp →</button><button class="btn" id="demoFinish">Xem hết</button><button class="btn" id="demoExit">Thoát thử</button></div><div class="hint" id="demoInfo"></div><div class="tools"><button class="btn slim" id="loadC10">Nạp bàn C10 từ ảnh bạn gửi (20 lượt)</button></div><div class="progress"><i id="demoBar" style="width:0%"></i></div><p class="hint">Bước tiếp chỉ mở ra 1 kết quả; tín hiệu được tính từ những kết quả đã biết trước bước đó. Dùng tab Bảng chính để nhìn điều kiện kích hoạt, tab Đúng/sai để xem chấm từng lượt.</p></div><div class="panel"><div class="panelhead"><h2>Nhập chuỗi / JSON</h2></div><textarea class="input" id="pasteText" placeholder="Ví dụ: BBPPHBPBPPB... (H là Hòa); hoặc dán JSON backup có boards/cols/hands/results."></textarea><div class="tools"><button class="btn primary" id="importPaste">Nhập chuỗi / JSON</button><label class="fileLabel">Chọn file .json / .txt / .csv<input accept=".json,.txt,.csv" hidden="" id="importFile" type="file"/></label></div><p class="hint">Tương thích bản sao lưu JSON của Bảng Khối Lab cũ. Khi dán chuỗi, chỉ gồm B/P/H (hoặc T cho Hòa).</p></div></div><div><div class="panel"><div class="panelhead"><h2>Sao lưu dữ liệu test</h2></div><p class="hint">Xuất toàn bộ bàn bạn nhập và danh sách rule đang bật. File không chứa dữ liệu bí mật.</p><div class="tools"><button class="btn" id="exportJson">Xuất backup JSON</button><button class="btn" id="exportResults">Xuất báo cáo CSV</button></div><div class="help">Dữ liệu được lưu trên trình duyệt này. Khi chuyển sang thiết bị khác cần nhập bản sao lưu. Chọn lại rule không làm thay đổi các lượt đã nhập; phần thống kê sẽ tính lại từ đầu.</div></div><div class="panel"><div class="panelhead"><h2>Phân biệt các chỉ số</h2></div><p class="hint"><b>40 bàn tìm:</b> kết quả trên nhóm dữ liệu dùng tạo mẫu. <b>12 bàn đối chiếu:</b> hồi cứu trên nhóm còn lại đã từng được xem khi chọn công thức. <b>CV:</b> chia nhóm kiểm tra trong tập học. <b>Bàn hiện tại:</b> đúng/sai bạn tự nhập hoặc các lượt được mở trong demo.</p><p class="hint" style="margin-top:10px">Hệ thống không coi nhiều BK trùng chữ ký là xác nhận độc lập, và không dự đoán khi thiếu ô tham chiếu hoặc chưa đủ độ dài cửa sổ N lượt.</p></div></div></div></section>
+<footer class="footer">Bảng Khối Lab v3.3 · 30 rule có thể bật, các bộ 3/7/12/20/30 rule. % lịch sử mang tính hồi cứu, không phải xác suất trúng ở bàn mới.</footer></div><div id="popup"></div>
+<script id="seed" type="application/json">{"rules":[{"id":"BK047","feature_names":["cell_-2_-2","cell_-3_-1"],"patterns":[{"values":["B","H"],"pick":"P","train_hit":6,"train_n":7},{"values":["P","H"],"pick":"B","train_hit":6,"train_n":7}],"train":{"hit":12,"n":14},"test":{"hit":15,"n":19},"cv":{"hit":12,"n":14},"c10":{"hit":0,"n":0}},{"id":"BK054","feature_names":["lag12","shape_mirror1_bp_count"],"patterns":[{"values":["P","-2"],"pick":"B","train_hit":9,"train_n":9},{"values":["H","-3"],"pick":"P","train_hit":5,"train_n":5}],"train":{"hit":14,"n":14},"test":{"hit":11,"n":14},"cv":{"hit":14,"n":18},"c10":{"hit":0,"n":0}},{"id":"BK030","feature_names":["netstrong_4","shape_L_a_bp_count"],"patterns":[{"values":["P+","3"],"pick":"P","train_hit":10,"train_n":12}],"train":{"hit":10,"n":12},"test":{"hit":8,"n":10},"cv":{"hit":10,"n":13},"c10":{"hit":0,"n":0}},{"id":"BK043","feature_names":["net_8","switch_6"],"patterns":[{"values":["E","1"],"pick":"B","train_hit":9,"train_n":10}],"train":{"hit":9,"n":10},"test":{"hit":4,"n":5},"cv":{"hit":9,"n":10},"c10":{"hit":1,"n":1}},{"id":"BK040","feature_names":["parityB_18","shape_vertical"],"patterns":[{"values":["0","PBP"],"pick":"B","train_hit":6,"train_n":7},{"values":["1","BPB"],"pick":"B","train_hit":7,"train_n":8}],"train":{"hit":13,"n":15},"test":{"hit":4,"n":5},"cv":{"hit":10,"n":12},"c10":{"hit":0,"n":0}},{"id":"BK065","feature_names":["lag5","shape_L_c_bp_count"],"patterns":[{"values":["H","-2"],"pick":"B","train_hit":7,"train_n":8}],"train":{"hit":7,"n":8},"test":{"hit":7,"n":9},"cv":{"hit":7,"n":8},"c10":{"hit":0,"n":0}},{"id":"BK069","feature_names":["net_8","shape_mirror1_bp_count"],"patterns":[{"values":["E","0"],"pick":"P","train_hit":6,"train_n":7},{"values":["E","-3"],"pick":"B","train_hit":4,"train_n":5}],"train":{"hit":10,"n":12},"test":{"hit":7,"n":9},"cv":{"hit":6,"n":7},"c10":{"hit":1,"n":1}},{"id":"BK005","feature_names":["last4","shape_mirror2"],"patterns":[{"values":["BPPP","BPB"],"pick":"B","train_hit":4,"train_n":5},{"values":["PBPB","PPP"],"pick":"P","train_hit":5,"train_n":5}],"train":{"hit":9,"n":10},"test":{"hit":1,"n":1},"cv":{"hit":3,"n":3},"c10":{"hit":0,"n":0}},{"id":"BK032","feature_names":["netstrong_18","netstrong_3"],"patterns":[{"values":["B+","flat"],"pick":"P","train_hit":8,"train_n":9}],"train":{"hit":8,"n":9},"test":{"hit":8,"n":10},"cv":{"hit":3,"n":3},"c10":{"hit":0,"n":0}},{"id":"BK035","feature_names":["cell_-2_0","net_8"],"patterns":[{"values":["H","E"],"pick":"P","train_hit":8,"train_n":10}],"train":{"hit":8,"n":10},"test":{"hit":5,"n":6},"cv":{"hit":5,"n":7},"c10":{"hit":0,"n":0}},{"id":"BK017","feature_names":["cell_-2_-2","shape_mirror2"],"patterns":[{"values":["B","PBP"],"pick":"P","train_hit":13,"train_n":16},{"values":["P","BPB"],"pick":"B","train_hit":13,"train_n":15},{"values":["P","HBP"],"pick":"P","train_hit":4,"train_n":5}],"train":{"hit":30,"n":36},"test":{"hit":8,"n":8},"cv":{"hit":25,"n":36},"c10":{"hit":0,"n":0}},{"id":"BK010","feature_names":["cell_-1_-3","shape_mirror2"],"patterns":[{"values":["B","PPP"],"pick":"B","train_hit":4,"train_n":5},{"values":["P","PBP"],"pick":"P","train_hit":8,"train_n":8}],"train":{"hit":12,"n":13},"test":{"hit":7,"n":8},"cv":{"hit":11,"n":16},"c10":{"hit":0,"n":0}},{"id":"BK018","feature_names":["cell_-1_-1","netstrong_3"],"patterns":[{"values":["H","P+"],"pick":"P","train_hit":8,"train_n":9}],"train":{"hit":8,"n":9},"test":{"hit":5,"n":6},"cv":{"hit":11,"n":16},"c10":{"hit":0,"n":0}},{"id":"BK027","feature_names":["cell_-1_2","switch_8"],"patterns":[{"values":["H","3"],"pick":"P","train_hit":6,"train_n":7},{"values":["B","7"],"pick":"P","train_hit":7,"train_n":9}],"train":{"hit":13,"n":16},"test":{"hit":3,"n":3},"cv":{"hit":4,"n":6},"c10":{"hit":0,"n":0}},{"id":"BK060","feature_names":["cell_-1_2","ties_6"],"patterns":[{"values":["P","2"],"pick":"B","train_hit":7,"train_n":9}],"train":{"hit":7,"n":9},"test":{"hit":8,"n":10},"cv":{"hit":4,"n":6},"c10":{"hit":0,"n":0}},{"id":"BK082","feature_names":["shape_triangle_bp_count","ties_3"],"patterns":[{"values":["2","0"],"pick":"P","train_hit":10,"train_n":11}],"train":{"hit":10,"n":11},"test":{"hit":13,"n":17},"cv":{"hit":20,"n":31},"c10":{"hit":0,"n":0}},{"id":"BK081","feature_names":["cell_-2_-2","shape_L_d"],"patterns":[{"values":["P","PPP"],"pick":"B","train_hit":9,"train_n":10},{"values":["P","BPB"],"pick":"B","train_hit":13,"train_n":16},{"values":["B","BPP"],"pick":"B","train_hit":5,"train_n":6}],"train":{"hit":27,"n":32},"test":{"hit":13,"n":17},"cv":{"hit":23,"n":37},"c10":{"hit":0,"n":0}},{"id":"BK058","feature_names":["colprev_major","shape_triangle"],"patterns":[{"values":["P","BBP"],"pick":"P","train_hit":4,"train_n":5},{"values":["B","BPP"],"pick":"P","train_hit":10,"train_n":13},{"values":["E","PPP"],"pick":"P","train_hit":5,"train_n":6},{"values":["E","BBP"],"pick":"B","train_hit":9,"train_n":11},{"values":["P","BPB"],"pick":"B","train_hit":9,"train_n":10},{"values":["P","PHP"],"pick":"B","train_hit":5,"train_n":5},{"values":["P","PPH"],"pick":"P","train_hit":6,"train_n":6}],"train":{"hit":48,"n":56},"test":{"hit":21,"n":27},"cv":{"hit":27,"n":45},"c10":{"hit":0,"n":0}},{"id":"BK026","feature_names":["net_8","switch_8"],"patterns":[{"values":["E","7"],"pick":"P","train_hit":7,"train_n":9},{"values":["E","2"],"pick":"B","train_hit":6,"train_n":7}],"train":{"hit":13,"n":16},"test":{"hit":5,"n":6},"cv":{"hit":3,"n":5},"c10":{"hit":0,"n":0}},{"id":"BK070","feature_names":["net_24","parityB_3"],"patterns":[{"values":["E","0"],"pick":"B","train_hit":7,"train_n":9}],"train":{"hit":7,"n":9},"test":{"hit":7,"n":8},"cv":{"hit":3,"n":5},"c10":{"hit":0,"n":0}},{"id":"BK051","feature_names":["colprev_switch","last2"],"patterns":[{"values":["2","HP"],"pick":"P","train_hit":7,"train_n":9},{"values":["3","BH"],"pick":"P","train_hit":5,"train_n":6},{"values":["5","BB"],"pick":"P","train_hit":4,"train_n":4}],"train":{"hit":16,"n":19},"test":{"hit":11,"n":14},"cv":{"hit":7,"n":12},"c10":{"hit":0,"n":0}},{"id":"BK028","feature_names":["netstrong_12","round_mod6"],"patterns":[{"values":["P+","3"],"pick":"B","train_hit":8,"train_n":10}],"train":{"hit":8,"n":10},"test":{"hit":9,"n":11},"cv":{"hit":16,"n":28},"c10":{"hit":0,"n":0}},{"id":"BK057","feature_names":["cell_-1_1","switch_18"],"patterns":[{"values":["B","12"],"pick":"P","train_hit":7,"train_n":9},{"values":["P","8"],"pick":"P","train_hit":11,"train_n":14},{"values":["H","11"],"pick":"B","train_hit":4,"train_n":4}],"train":{"hit":22,"n":27},"test":{"hit":25,"n":32},"cv":{"hit":8,"n":14},"c10":{"hit":0,"n":0}},{"id":"BK042","feature_names":["shape_horiz_bp_count","shape_vertical_bp_count"],"patterns":[{"values":["-1","-1"],"pick":"B","train_hit":8,"train_n":10}],"train":{"hit":8,"n":10},"test":{"hit":4,"n":5},"cv":{"hit":5,"n":9},"c10":{"hit":0,"n":0}},{"id":"BK067","feature_names":["cell_0_-4","shape_L_a_bp_count"],"patterns":[{"values":["P","0"],"pick":"P","train_hit":7,"train_n":8}],"train":{"hit":7,"n":8},"test":{"hit":7,"n":9},"cv":{"hit":11,"n":20},"c10":{"hit":0,"n":0}},{"id":"BK086","feature_names":["net_5","shape_L_d"],"patterns":[{"values":["P","BPH"],"pick":"B","train_hit":6,"train_n":6},{"values":["E","PBP"],"pick":"P","train_hit":4,"train_n":5},{"values":["P","BBH"],"pick":"B","train_hit":4,"train_n":4},{"values":["B","HBB"],"pick":"P","train_hit":4,"train_n":4},{"values":["B","PBH"],"pick":"P","train_hit":4,"train_n":5}],"train":{"hit":22,"n":24},"test":{"hit":16,"n":21},"cv":{"hit":7,"n":13},"c10":{"hit":0,"n":0}},{"id":"BK016","feature_names":["shape_triangle_bp_count","switch_18"],"patterns":[{"values":["1","12"],"pick":"P","train_hit":4,"train_n":4},{"values":["3","10"],"pick":"P","train_hit":5,"train_n":5}],"train":{"hit":9,"n":9},"test":{"hit":10,"n":12},"cv":{"hit":7,"n":13},"c10":{"hit":0,"n":0}},{"id":"BK011","feature_names":["netstrong_6","switch_12"],"patterns":[{"values":["P+","9"],"pick":"B","train_hit":7,"train_n":8}],"train":{"hit":7,"n":8},"test":{"hit":1,"n":1},"cv":{"hit":18,"n":34},"c10":{"hit":0,"n":0}},{"id":"BK004","feature_names":["run_bucket","shape_mirror1_bp_count"],"patterns":[{"values":["B4","-1"],"pick":"P","train_hit":6,"train_n":6},{"values":["P2","3"],"pick":"P","train_hit":5,"train_n":6},{"values":["P4","1"],"pick":"B","train_hit":7,"train_n":8}],"train":{"hit":18,"n":20},"test":{"hit":9,"n":10},"cv":{"hit":19,"n":36},"c10":{"hit":0,"n":2}},{"id":"BK061","feature_names":["cell_-2_-2","shape_L_b"],"patterns":[{"values":["P","PPB"],"pick":"B","train_hit":12,"train_n":15},{"values":["B","PHP"],"pick":"P","train_hit":4,"train_n":4}],"train":{"hit":16,"n":19},"test":{"hit":7,"n":9},"cv":{"hit":13,"n":25},"c10":{"hit":0,"n":0}}],"demos":[{"name":"Toan live3","seq":"BPPPBHBBBPBBPPPPBPHBBPBHPBHBPPPPPBPHPBBBPBHPPPPBBPHBPPBPB","origin":3,"split":"test"},{"name":"Toan live5","seq":"PBHPPPBPBHPBBPBBPHPBBHBPBPPBBHPBBPBPPPHBBPBBPPBPHPPPBBBPP","origin":7,"split":"test"},{"name":"Toan live4","seq":"PPBPBBBPPPBBPPBBBBPPBBBPHPPPPBBBPBBPBHHBPPPPBBHBPBBPPBBP","origin":7,"split":"test"},{"name":"Toan live1","seq":"PPBBBPBBHBHPBPBBPBBPPPPHPHBBBHBBBBBHBBBPPBPPPBBPHPBBPPB","origin":8,"split":"test"},{"name":"Toan live2","seq":"BBBPBBPPPBBHBPPBBBBPPBBBBPPPBBBBHBPHBBBBPPPBBHPBBP","origin":19,"split":"test"},{"name":"C09 2026-11-02","seq":"PPBBBPPBBBBPBPBBPPPPBPBPBBBPPBBPBHPBPPPPPPPPPBPP","origin":0,"split":"test"},{"name":"Anh hien tai","seq":"BPPPPBPPPPHPHBBBPPBBPPBHPBHPBP","origin":0,"split":"test"},{"name":"Cards Baccarat_PB_backup_2026-10-23_van65 (1).json","seq":"BPPPPHPBPHPBPBBPPBPPBPPPBPBPBBPPBBPBBBPPHPBBBPBPBBPHHBB","origin":9,"split":"test"},{"name":"Cards Baccarat_PB_backup_2026-10-24_van46.json","seq":"BHPPBPPPPHPBHPBBPPHPBPBPPPPBHPBBBHPPBPBPPBPBB","origin":0,"split":"test"},{"name":"Cards Baccarat_PB_backup_2026-10-24_van64.json","seq":"PBBBPBPPPPBPPPBHPHBBHHPPHPHPPBBPPBBBPPPBBPHPPBBPBHBBBHPPPPP","origin":4,"split":"test"},{"name":"Cards Baccarat_PB_backup_2026-10-25_van63.json","seq":"BHBPPBBPHPBBBPBBHBHPBBPBPPPBPHPBBPBPHPBPHBHBBBB","origin":15,"split":"test"},{"name":"Cards Toan_Hoc_Muc_1_2_van65_2026-10-26.json","seq":"PPPPPPHBPBPPBBPPHBPPPPPPBBPBPBPHBBHPPBBBBBBHPPPPBBPBPPHBBPBBPB","origin":2,"split":"test"}],"meta":{"rules":30,"groups":30,"patterns":60,"train_boards":40,"test_boards":12,"results":1642}}</script><script>
+(()=>{'use strict';
+const D=JSON.parse(document.getElementById('seed').textContent),ALL=D.rules.map(r=>({...r,group:r.id})),DEMOS=D.demos.map(d=>({...d,seq:typeof d.seq==='string'?d.seq.split(''):d.seq})),KEY='bang_khoi_lab_v27_chon_3_30_20261117',OLD_KEY='bang_khoi_lab_v24_12_20261117';
+const $=id=>document.getElementById(id),escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),pct=(h,n)=>n?(100*h/n).toFixed(1)+'%':'—',color=x=>x==='B'?'B':x==='P'?'P':'H';
+const coreThree=['BK047','BK054','BK030'],presets={3:coreThree,7:['BK047','BK054','BK030','BK043','BK040','BK065','BK069'],12:['BK047','BK054','BK030','BK043','BK040','BK065','BK069','BK005','BK032','BK035','BK017','BK010'],20:['BK047','BK054','BK030','BK043','BK040','BK065','BK069','BK005','BK032','BK035','BK017','BK010','BK018','BK027','BK060','BK082','BK081','BK058','BK026','BK070'],30:['BK047','BK054','BK030','BK043','BK040','BK065','BK069','BK005','BK032','BK035','BK017','BK010','BK018','BK027','BK060','BK082','BK081','BK058','BK026','BK070','BK051','BK028','BK057','BK042','BK067','BK086','BK016','BK011','BK004','BK061']};
+const defaultState=()=>({version:9,autoMode:true,lookback:20,boards:[{id:'manual_1',name:'Bàn của tôi',seq:[],origin:0}],chosen:'manual_1',enabled:presets[12].slice(),demo:null,redo:[]});
+let state;try{const saved=localStorage.getItem(KEY),older=localStorage.getItem(OLD_KEY);state=Object.assign(defaultState(),JSON.parse(saved||older||'{}'));if(!saved){state.enabled=presets[12].slice();state.demo=null;}}catch{state=defaultState();}
+if(!Array.isArray(state.boards)||!state.boards.length)state=defaultState();
+state.enabled=(state.enabled||[]).filter(id=>presets[30].includes(id));if(!Array.isArray(state.redo))state.redo=[];if(![0,5,10,15,20].includes(Number(state.lookback)))state.lookback=20;state.lookback=Number(state.lookback);if(typeof state.autoMode!=='boolean')state.autoMode=true;let tab='main';
+const LAGS=[1,2,3,4,5,6,7,8,9,12,18,24],SHAPES={L_a:[[-1,0],[-1,-1],[-2,0]],L_b:[[-1,0],[-2,0],[-2,-1]],L_c:[[-1,0],[-1,1],[-2,0]],L_d:[[-1,0],[-2,0],[-2,1]],triangle:[[-1,-1],[-1,1],[-2,0]],diag_up:[[-1,-1],[-2,-2],[-3,-3]],diag_down:[[-1,1],[-2,2],[-3,3]],horiz:[[-1,0],[-2,0],[-3,0]],vertical:[[-1,-1],[-1,-2],[-1,-3]],mirror1:[[-1,-1],[-1,0],[-1,1]],mirror2:[[-2,-1],[-2,0],[-2,1]],square_corner:[[-1,0],[-2,0],[-2,-1]]};
+function features(board,t){const a=board.seq,origin=Number(board.origin)||0,past=a.slice(0,t),pos=origin+t,row=pos%6,col=Math.floor(pos/6),f={row:String(row+1),col_parity:String(col%2),round_mod6:String(pos%6)};function get(dc,dr){const c=col+dc,r=row+dr;if(c<0||r<0||r>=6)return null;const i=6*c+r-origin;return(i>=0&&i<t)?a[i]:null;}
+for(const k of LAGS)if(t>=k)f['lag'+k]=a[t-k];for(const dc of [-1,-2,-3])for(let dr=-3;dr<=3;dr++){const z=get(dc,dr);if(z!==null)f[`cell_${dc}_${dr}`]=z;}for(const dr of [-1,-2,-3,-4,-5]){const z=get(0,dr);if(z!==null)f[`cell_0_${dr}`]=z;}
+for(const [name,offsets] of Object.entries(SHAPES)){const vs=offsets.map(v=>get(...v));if(vs.every(z=>z!==null)){f['shape_'+name]=vs.join('');f['shape_'+name+'_bp_count']=String(vs.filter(x=>x==='B').length-vs.filter(x=>x==='P').length);}}
+for(const n of [3,4,5,6,8,10,12,18,24])if(t>=n){const s=past.slice(-n),d=s.filter(x=>x==='B').length-s.filter(x=>x==='P').length;f['net_'+n]=d>0?'B':d<0?'P':'E';f['netstrong_'+n]=d>=Math.max(2,Math.floor(n/3))?'B+':d<=-Math.max(2,Math.floor(n/3))?'P+':'flat';f['switch_'+n]=String(s.slice(1).filter((x,i)=>x!==s[i]).length);f['ties_'+n]=String(s.filter(x=>x==='H').length);f['parityB_'+n]=String(s.filter(x=>x==='B').length%2);}
+if(t>=2)f.last2=past.slice(-2).join('');if(t>=3)f.last3=past.slice(-3).join('');if(t>=4)f.last4=past.slice(-4).join('');if(t>=6)f.last6=past.slice(-6).join('');if(t){let z=past[t-1],run=1;while(run<t&&past[t-run-1]===z)run++;f.run_color=z;f.run_len=String(Math.min(run,6));f.run_bucket=z+Math.min(run,4);f.run_parity=z+(run%2);}
+if(col>=1){const prev=Array.from({length:6},(_,i)=>get(-1,i-row));if(prev.every(z=>z!==null)){let nb=prev.filter(z=>z==='B').length,np=prev.filter(z=>z==='P').length;f.colprev_B=String(nb);f.colprev_P=String(np);f.colprev_major=nb>np?'B':np>nb?'P':'E';f.colprev_switch=String(prev.slice(1).filter((x,i)=>x!==prev[i]).length);}}
+const tri1=[-1,0,1].map(dr=>get(-1,dr)),tri2=[-1,0,1].map(dr=>get(-2,dr));if([...tri1,...tri2].every(z=>z!==null)){f.mirror_three=tri1.every((x,i)=>x===tri2[i])?'same':tri1.every((x,i)=>x!==tri2[i]&&x!=='H'&&tri2[i]!=='H')?'invert':'other';}return f;}
+function humanName(k){if(/^cell_/.test(k)){const m=k.match(/^cell_(-?\d+)_(-?\d+)$/);if(m)return `Ô cột ${Math.abs(+m[1])} bên trái, ${+m[2]<0?'trên':+m[2]>0?'dưới':'cùng hàng'} ${Math.abs(+m[2])} hàng`;}if(/^lag\d+/.test(k))return 'Kết quả '+k.slice(3)+' lượt trước';if(/^shape_/.test(k))return 'Hình '+k.slice(6).replaceAll('_bp_count',' (B−P)').replaceAll('_',' ');if(/^net_/.test(k))return 'Bên trội '+k.slice(4)+' lượt';if(/^netstrong_/.test(k))return 'Bên trội mạnh '+k.slice(10)+' lượt';if(/^switch_/.test(k))return 'Số lần đổi trạng thái '+k.slice(7)+' lượt';if(/^ties_/.test(k))return 'Số hòa '+k.slice(5)+' lượt';if(/^parityB_/.test(k))return 'Chẵn/lẻ B '+k.slice(8)+' lượt';const x={row:'Hàng',col_parity:'Chẵn/lẻ cột',colprev_major:'Bên trội cột trước',colprev_switch:'Số lần đổi trong cột trước',round_mod6:'Vị trí hàng mod 6',run_bucket:'Độ dài bệt (tối đa 4)',run_color:'Màu bệt',run_len:'Độ dài bệt',last2:'Hai lượt gần nhất',last3:'Ba lượt gần nhất',last4:'Bốn lượt gần nhất',mirror_three:'Hai hình 3 ô cột trước'};return x[k]||k;}
+function describe(r,p){return r.feature_names.map((x,i)=>humanName(x)+' = '+p.values[i]).join(' · ');}
+function predict(r,board,t){if(t<4)return null;const f=features(board,t);for(const p of r.patterns){if(r.feature_names.every((n,i)=>f[n]!==undefined&&String(f[n])===String(p.values[i]))){return{pick:p.pick,cond:describe(r,p),pattern:p};}}return null;}
+function selections(board,t,rules){return rules.map(r=>({rule:r,res:predict(r,board,t)})).filter(x=>x.res);}
+
+const AUTO_MODES=[3,7,12,20,30];
+const AUTO_RULE_SETS=Object.fromEntries(AUTO_MODES.map(n=>[n,new Set(presets[n])]));
+let autoCache={key:null,value:null};
+function autoData(board){
+ const key=board.id+'|'+(board.origin||0)+'|'+board.seq.join('');
+ if(autoCache.key===key)return autoCache.value;
+ const modes=Object.fromEntries(AUTO_MODES.map(n=>[n,[]]));
+ // Every rule is evaluated using results 0..t-1 only; at t==length the result is still unknown.
+ for(let t=4;t<=board.seq.length;t++){
+  const allHits=selections(board,t,ALL);
+  const actual=t<board.seq.length?board.seq[t]:null;
+  for(const n of AUTO_MODES){
+   const hits=allHits.filter(h=>AUTO_RULE_SETS[n].has(h.rule.id)),v=votes(hits);
+   const conflict=v.B>0&&v.P>0,pick=conflict||(!v.B&&!v.P)?null:(v.B?'B':'P');
+   if(!pick&&!conflict)continue;
+   modes[n].push({t,pick,actual,conflict,ok:actual&&actual!=='H'&&pick?pick===actual:null,number:hits.length});
+  }
+ }
+ const val={modes,len:board.seq.length};autoCache={key,value:val};return val;
+}
+function wilson90(hit,n){if(!n)return 0;const z=1.645,p=hit/n,d=1+z*z/n;return (p+z*z/(2*n)-z*Math.sqrt(p*(1-p)/n+z*z/(4*n*n)))/d;}
+function autoAt(data,t){
+ const profiles=AUTO_MODES.map(n=>{
+  const events=data.modes[n];
+  const past=events.filter(e=>e.t<t&&e.pick&&e.actual&&e.actual!=='H');
+  let considered=past,span='cả bàn';
+  for(const window of [10,20,30]){const subset=past.filter(e=>e.t>=t-window);if(subset.length>=3){considered=subset;span=window+' tay';break;}}
+  const hit=considered.filter(e=>e.ok).length,sz=considered.length,latest=considered.slice(-3),recentHit=latest.filter(e=>e.ok).length;
+  const rate=sz?hit/sz:null;
+  const ok=sz>=3&&rate>=.70&&recentHit>=2;
+  const current=events.find(e=>e.t===t)||null;
+  return {mode:n,hit,sz,rate,span,recentHit,recentN:latest.length,ok,current,score:wilson90(hit,sz)+(latest.length===3?(recentHit/3-.5)*.035:0),total:past.length};
+ });
+ const qualified=profiles.filter(p=>p.ok).sort((a,b)=>b.score-a.score||b.sz-a.sz||a.mode-b.mode);
+ // Prefer the highest-scoring eligible profile that actually has a clean next-turn signal.
+ const firing=qualified.filter(p=>p.current?.pick&&!p.current.conflict);
+ const leader=firing[0]||qualified[0]||null;
+ const bestShown=leader||profiles.filter(p=>p.sz).sort((a,b)=>b.score-a.score||b.sz-a.sz)[0]||null;
+ return {profiles,leader,bestShown,ready:!!leader,active:!!leader?.current?.pick&&!leader.current.conflict};
+}
+function autoWalk(board){
+ const d=autoData(board), current=autoAt(d,board.seq.length), rows=[],byMode={};
+ for(let t=4;t<board.seq.length;t++){
+  const pick=autoAt(d,t),lead=pick.leader;
+  if(!lead||!pick.active)continue;
+  const e=lead.current,act=board.seq[t];
+  const ok=act==='H'?null:e.pick===act;
+  const row={t:t+1+(Number(board.origin)||0),id:'AUTO '+lead.mode,pick:e.pick,actual:act,ok,cond:'Bộ '+lead.mode+' · '+lead.span+' · '+lead.hit+'/'+lead.sz+' gần đây',mode:lead.mode};
+  rows.push(row);
+  if(!byMode[lead.mode])byMode[lead.mode]={hit:0,miss:0,tie:0,n:0};
+  if(ok===null)byMode[lead.mode].tie++;else {byMode[lead.mode].n++;if(ok)byMode[lead.mode].hit++;else byMode[lead.mode].miss++;}
+ }
+ const hit=rows.filter(r=>r.ok===true).length,miss=rows.filter(r=>r.ok===false).length,tie=rows.filter(r=>r.ok===null).length;
+ return {current,rows,byMode,hit,miss,tie,n:hit+miss,signals:rows.length,conflict:0};
+}
+function autoSummary(board){const a=autoWalk(board);return {hit:a.hit,miss:a.miss,tie:a.tie,conflict:0,n:a.n,signals:a.signals};}
+function autoStages(board){
+ const all=autoWalk(board).rows,origin=Number(board.origin)||0,group=[];
+ for(let a=0;a<board.seq.length;a+=20){const b=Math.min(board.seq.length,a+20);const rr=all.filter(r=>r.t>=origin+a+1&&r.t<=origin+b);const hit=rr.filter(r=>r.ok===true).length,miss=rr.filter(r=>r.ok===false).length;group.push({start:a+1,end:b,hit,miss,n:hit+miss,conflict:0});}
+ return group;
+}
+
+function autoEnabled(){const a=autoWalk(boardActive()).current.leader;if(!a)return [];return ALL.filter(r=>AUTO_RULE_SETS[a.mode].has(r.id));}
+function enabledRules(){if(state.autoMode)return autoEnabled();const ids=new Set(state.enabled);return ALL.filter(r=>ids.has(r.id));}
+
+function boardActive(){if(state.demo){let d=DEMOS[state.demo.index];return {id:'__demo__',name:d.name+' · Demo',seq:d.seq.slice(0,state.demo.pos),origin:d.origin};}return state.boards.find(b=>b.id===state.chosen)||state.boards[0];}
+function review(board,rules=enabledRules()){let totals={},entries=[];for(const r of rules)totals[r.id]={hit:0,miss:0,tie:0,n:0};for(let t=4;t<board.seq.length;t++){let a=board.seq[t];for(const {rule:r,res} of selections(board,t,rules)){let q=totals[r.id],ok=a==='H'?null:res.pick===a;if(a==='H')q.tie++;else{q.n++;if(ok)q.hit++;else q.miss++;}entries.push({t:t+1+(Number(board.origin)||0),id:r.id,pick:res.pick,actual:a,ok,cond:res.cond});}}return{totals,entries};}
+// Phong do cua tung rule tren BAN HIEN TAI: tinh tu luot da biet truoc khi du doan.
+function liveBreakdown(board){
+ const q=review(board,ALL),by={};
+ for(const r of ALL){
+  const entries=q.entries.filter(x=>x.id===r.id),resolved=entries.filter(x=>x.ok!==null),last=resolved.slice(-5);
+  const hit=resolved.filter(x=>x.ok).length,miss=resolved.length-hit;
+  const lastHit=last.filter(x=>x.ok).length,lastN=last.length;
+  const current=predict(r,board,board.seq.length),total=entries.length,tie=entries.filter(x=>x.ok===null).length;
+  const currentN=resolved.length;
+  let level='none',label='Chưa có mẫu';
+  let streak=0,streakSide=null;for(let i=resolved.length-1;i>=0;i--){const v=resolved[i].ok?'W':'L';if(streakSide&&streakSide!==v)break;streakSide=v;streak++;}
+  if(currentN>0&&currentN<5){
+   level=streak>=2?(streakSide==='W'?'streak':'slump'):'small';
+   label=streak>=2?(streakSide==='W'?`Đúng ${streak} liên tiếp · ít mẫu`:`Sai ${streak} liên tiếp · ít mẫu`):'Ít mẫu';
+  }
+  else if(currentN>=5&&lastN===5&&lastHit>=4&&hit/currentN>=.65){level='good';label='Tốt gần đây';}
+  else if(currentN>=5&&(lastHit<=2||hit/currentN<=.45)){level='weak';label='Yếu gần đây';}
+  else if(currentN>=5){level='neutral';label='Trung tính';}
+  by[r.id]={id:r.id,entries,resolved,hit,miss,tie,n:currentN,total,last,lastHit,lastN,level,label,streak,streakSide,current,lastAt:entries.length?entries[entries.length-1].t:null};
+ }
+ return by;
+}
+function trendHTML(m){return m.last.length?'<span class="trend" aria-label="5 tín hiệu B/P đã chấm gần nhất">'+m.last.map(x=>`<i title="Lượt ${x.t}: ${x.pick} → ${x.actual} · ${x.ok?'Đúng':'Sai'}" class="${x.ok?'win':'loss'}">${x.ok?'✓':'×'}</i>`).join('')+'</span>':'<span class="trendEmpty">Chưa có tín hiệu B/P để chấm</span>';}
+function compareLive(a,b){const level={good:6,streak:5,neutral:4,small:3,slump:2,weak:1,none:0};return level[b.level]-level[a.level]||(b.n>=5?1:0)-(a.n>=5?1:0)||(b.lastN?b.lastHit/b.lastN:0)-(a.lastN?a.lastHit/a.lastN:0)||b.n-a.n;}
+function liveBadge(m){return `<span class="healthFlag ${m.level}" title="Đánh giá hồi cứu theo các tín hiệu đã xảy ra trên bàn hiện tại">${m.label}</span>`;}
+function votes(hits){const groups=new Map();for(const h of hits){let group=h.rule.group;if(!groups.has(group))groups.set(group,new Set());groups.get(group).add(h.res.pick);}let B=0,P=0,conflicting=0;for(const v of groups.values()){if(v.size>1){conflicting++;continue;}if(v.has('B'))B++;if(v.has('P'))P++;}return{B,P,conflicting,groups:groups.size};}
+const HIST_CACHE=new Map();
+// v3.3: independent retrospective summaries for each preset on the selected board.
+// "Tay" counts actual rounds (ties included), whereas the hit-rate denominator counts resolved B/P signals.
+function presetHealth(board,rules){
+ const full=summaryBoard(board,rules);
+ let recent=null,span='',rounds=0;
+ for(const window of [10,15,20,30]){
+   const sample=summaryBoard(board,rules,window);
+   if(sample.n>=3){recent=sample;rounds=Math.min(window,board.seq.length);span=window+' tay';break;}
+ }
+ if(!recent){recent=full;rounds=board.seq.length;span='cả bàn ('+rounds+' tay)';}
+ const ratio=recent.n?recent.hit/recent.n:null;
+ let status='Chưa có dữ liệu',tone='empty';
+ if(recent.n>0&&recent.n<3){status='Ít mẫu';tone='small';}
+ else if(recent.n>=3&&recent.n<5){
+  status=ratio>=.75?'Đang khá · ít mẫu':ratio<.45?'Đang yếu · ít mẫu':'Chưa rõ · ít mẫu';tone='small';
+ }else if(recent.n>=5){
+  if(ratio>=.75){status='Tốt gần đây';tone='good';}
+  else if(ratio>=.60){status='Khá gần đây';tone='warm';}
+  else if(ratio>=.45){status='Trung tính';tone='neutral';}
+  else {status='Yếu gần đây';tone='weak';}
+ }
+ const v=votes(selections(board,board.seq.length,rules));
+ const next=v.B&&v.P?'XUNG ĐỘT':v.B?'B':v.P?'P':'CHỜ';
+ return {full,recent,span,rounds,status,tone,next};
+}
+
+function summaryBoard(board,rules,windowRounds=0){const s={hit:0,miss:0,tie:0,conflict:0,signals:0,byB:0,byP:0};for(let t=Math.max(4,windowRounds?board.seq.length-windowRounds:4);t<board.seq.length;t++){const v=votes(selections(board,t,rules)),actual=board.seq[t];if(v.B&&v.P){s.conflict++;continue;}if(!v.B&&!v.P)continue;s.signals++;const chosen=v.B?'B':'P';chosen==='B'?s.byB++:s.byP++;if(actual==='H')s.tie++;else if(chosen===actual)s.hit++;else s.miss++;}s.n=s.hit+s.miss;return s;}
+function windowLabel(){return state.lookback?state.lookback+' tay gần nhất':'toàn bàn';}
+function windowStatRule(m,board){const origin=Number(board.origin)||0,cut=state.lookback?origin+board.seq.length-state.lookback:-Infinity;const z=m.entries.filter(x=>x.t>cut),res=z.filter(x=>x.ok!==null);return{hit:res.filter(x=>x.ok).length,n:res.length,total:z.length,tie:z.length-res.length};}
+function stageSummary(board,rules){const segments=[];for(let a=0;a<board.seq.length;a+=20){let b=Math.min(board.seq.length,a+20),out={hit:0,miss:0,tie:0,conflict:0,signals:0,byB:0,byP:0};for(let t=Math.max(4,a);t<b;t++){const vv=votes(selections(board,t,rules)),val=board.seq[t];if(vv.B&&vv.P){out.conflict++;continue;}if(!vv.B&&!vv.P)continue;out.signals++;const pick=vv.B?'B':'P';if(val==='H')out.tie++;else if(val===pick)out.hit++;else out.miss++;}out.n=out.hit+out.miss;segments.push({start:a+1,end:b,...out});}return segments;}
+function summary12(ids){const key=ids.slice().sort().join('|');if(HIST_CACHE.has(key))return HIST_CACHE.get(key);const rr=ALL.filter(r=>ids.includes(r.id));const s={hit:0,miss:0,tie:0,conflict:0,signals:0,byB:0,byP:0};for(const d of DEMOS){const z=summaryBoard(d,rr);for(const k of Object.keys(s))s[k]+=z[k];}s.n=s.hit+s.miss;HIST_CACHE.set(key,s);return s;}
+function chosenProfile(){for(const n of [3,7,12,20,30])if(state.enabled.length===presets[n].length&&presets[n].every(id=>state.enabled.includes(id)))return n;return null;}
+function chooseProfile(n){state.autoMode=false;state.enabled=presets[n].slice();render();}
+let warnedStorage=false;function store(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){if(!warnedStorage){warnedStorage=true;console.warn('Không lưu được localStorage; hãy xuất JSON để sao lưu.');}}}
+function notify(t){$('popup').textContent=t;$('popup').style.display='block';clearTimeout(notify.timeout);notify.timeout=setTimeout(()=>$('popup').style.display='none',4000)}
+function setTab(x){tab=x;document.querySelectorAll('.tabs button').forEach(a=>a.classList.toggle('active',a.dataset.tab===x));document.querySelectorAll('.tab').forEach(a=>a.classList.toggle('active',a.id==='tab-'+x));render();}
+function main(){const b=boardActive(),history=review(b),rules=enabledRules(),hits=selections(b,b.seq.length,rules),v=votes(hits),agg=state.autoMode?autoSummary(b):summaryBoard(b,rules),demo=!!state.demo;
+$('boardSelect').innerHTML=state.boards.map(x=>`<option value="${escape(x.id)}" ${x.id===state.chosen?'selected':''}>${escape(x.name)} (${x.seq.length})</option>`).join('');$('boardSelect').disabled=demo;$('boardMeta').textContent=demo?'Đang xem demo, không sửa trực tiếp':b.seq.length+' kết quả đã nhập';$('boardSummary').textContent=`${b.seq.length} lượt đã biết · B ${b.seq.filter(x=>x==='B').length} · P ${b.seq.filter(x=>x==='P').length} · H ${b.seq.filter(x=>x==='H').length}`;for(const id of ['addB','addP','addH','undo','redo','boardNew','boardRename','boardClear'])$(id).disabled=demo;
+const cols=Math.max(9,Math.ceil((b.seq.length+1+(b.origin||0))/6)+1),start=Math.floor((b.origin||0)/6)*6;let road='';for(let c=0;c<cols;c++)for(let r=0;r<6;r++){const ix=c*6+r-start+(start-(b.origin||0));const abs=c*6+r,local=abs-(b.origin||0),val=b.seq[local],next=local===b.seq.length;road+=`<div class="cell ${val|| (next?'next':'empty')}">${val|| (next?'?':'')}${val?`<em>${abs+1}</em>`:''}</div>`;} // rendering covers global column coordinates for partial-origin boards
+$('road').innerHTML=road;$('boardSummary').textContent+=' · Lượt tiếp theo '+(b.origin+b.seq.length+1);$('mobileNextNumber').textContent='Lượt '+(b.origin+b.seq.length+1);
+$('mainStats').innerHTML=[['Lượt có tín hiệu B/P',agg.n],['Đúng',agg.hit],['Sai',agg.miss],['% bàn này',pct(agg.hit,agg.n)]].map(([a,c])=>`<div class="stat"><b>${c}</b><span>${a}</span></div>`).join('');$('currentWarning').textContent=(state.autoMode?'AUTO, chọn bộ trước mỗi lượt · ':'')+(agg.n<5?'Mới có ít tín hiệu trên bàn này.':(agg.hit/agg.n<.6?'Hiệu suất thực tế trên bàn này đang thấp.':'Đang theo dõi trên bàn này.'))+' · Hòa: '+agg.tie+' · Xung đột: '+agg.conflict;
+let t='CHỜ',desc='Chưa rule nào kích hoạt',cls='warn';if(v.B&&v.P){t='XUNG ĐỘT — CHỜ';desc=`${v.B} nhóm báo B, ${v.P} nhóm báo P. Không có đồng thuận.`;}else if(v.B||v.P){t=v.B?'B — TÍN HIỆU THỬ':'P — TÍN HIỆU THỬ';cls=v.B?'B':'P';desc=`${v.B+v.P} rule kích hoạt, ${hits.length} BK báo hiệu (có thể trùng). Đây không phải xác suất thắng.`;}
+$('signalTitle').textContent=t;$('signalTitle').className='hero '+cls;$('signalDesc').textContent=desc;$('voteChips').innerHTML=`<span class="chip">B <strong>${v.B}</strong> rule</span><span class="chip">P <strong>${v.P}</strong> rule</span><span class="chip">${hits.length} rule kích hoạt</span><span class="chip">${state.autoMode?'AUTO · '+rules.length+' rule đang xét':rules.length+'/30 đang bật'}</span>`;
+const nowProfile=state.autoMode?(autoWalk(b).current.leader?.mode||null):chosenProfile(),total12=summary12(state.autoMode&&nowProfile?presets[nowProfile]:state.enabled),winAgg=summaryBoard(b,rules,state.lookback);
+$('modeSummary').innerHTML=state.autoMode?`<b>AUTO theo từng lượt</b> · <strong>${agg.hit}/${agg.n} (${pct(agg.hit,agg.n)})</strong> · ${agg.tie} Hòa. <span style="color:#7f9aab">Hiển thị thống kê của bộ được tự chọn trước từng lượt, không phải % của bộ đang dẫn đầu hiện tại.</span>`:`<b>${nowProfile?nowProfile+' rule':'Tùy chọn · '+rules.length+' rule'} đang dùng</b> · <strong>Cả ván ${agg.hit}/${agg.n} (${agg.n?pct(agg.hit,agg.n):'—'})</strong> · <strong>${presetHealth(b,rules).span}: ${presetHealth(b,rules).recent.hit}/${presetHealth(b,rules).recent.n} (${presetHealth(b,rules).recent.n?pct(presetHealth(b,rules).recent.hit,presetHealth(b,rules).recent.n):'—'})</strong> · ${agg.conflict} xung đột · Cũ 12 bàn ${pct(total12.hit,total12.n)}.`;
+$('stageStats').innerHTML=`<div class="periodInfo">Bộ ${rules.length} rule đang bật · dùng kết quả từng lượt đã xảy ra</div><table class="stageTable"><thead><tr><th>Đoạn lượt</th><th>Đúng/tổng</th><th>Tỷ lệ</th><th>Xung đột</th></tr></thead><tbody>${(state.autoMode?autoStages(b):stageSummary(b,rules)).map(x=>`<tr><td>${x.start}–${x.end}</td><td>${x.hit}/${x.n}</td><td>${pct(x.hit,x.n)}</td><td>${x.conflict}</td></tr>`).join('')}</tbody></table>`;
+const liveBreakdownCached=liveBreakdown(b);$('liveRulesPanel').style.display=hits.length?'':'none';
+$('liveRuleCards').innerHTML=hits.map(({rule:r,res})=>{
+  const st=history.totals[r.id]||{hit:0,n:0};
+  const m=liveBreakdownCached[r.id];
+  return `<div class="liveRule"><div style="min-width:0"><div class="liveRuleName"><strong>${escape(r.id)}</strong>${liveBadge(m)}<span class="hint">12 bàn: ${pct(r.test.hit,r.test.n)}</span></div><div class="liveRuleMeta" title="${escape(res.cond)}">${escape(res.cond)}</div><div class="liveRuleMeta">Bàn này: ${m.hit}/${m.n} (${pct(m.hit,m.n)}) · ${m.total} lượt kích hoạt · 5 gần nhất: ${m.lastHit}/${m.lastN}</div>${trendHTML(m)}</div><span class="liveRuleResult ${res.pick}">${res.pick}</span></div>`;
+}).join('');
+
+const roadEl=$('road'),pitch=parseFloat(getComputedStyle(roadEl).gridAutoColumns||'43')+parseFloat(getComputedStyle(roadEl).columnGap||'4'),col=Math.floor((b.origin+b.seq.length)/6);$('roadWrap').scrollLeft=Math.max(0,col*pitch-$('roadWrap').clientWidth*.55);
+}
+function renderRules(){
+ const b=boardActive(),live=liveBreakdown(b),needle=$('ruleSearch').value.toLowerCase().trim(),order=$('ruleOrder').value,active=new Set(state.enabled);const recent=x=>windowStatRule(x,b);
+ $('liveBoardCaption').innerHTML=`<strong>Đang xem: ${escape(b.name)}</strong> · ${b.seq.length} lượt đã nhập · hiển thị ${windowLabel()} và toàn bàn. <b>Tín hiệu</b> là số lần rule đã phát dự đoán, không phải số mẫu điều kiện của công thức.`;
+ const allValues=ALL.map(r=>live[r.id]),withSignals=allValues.filter(x=>x.total),good=allValues.filter(x=>x.level==='good'),weak=allValues.filter(x=>x.level==='weak');
+ $('healthOverview').innerHTML=`<span><b>${withSignals.length}/30</b><small>rule đã từng kích hoạt</small></span><span><b>${good.length}</b><small>tốt gần đây (≥5 mẫu)</small></span><span><b>${weak.length}</b><small>yếu gần đây</small></span><span><b>${active.size}</b><small>rule đang bật</small></span>`;
+ const top=[...allValues].filter(x=>x.n>=2).sort(compareLive).slice(0,3);
+ $('liveRuleTop').innerHTML=top.length?`<div class="topHead">Rule đáng theo dõi trên bàn này <small>(ít nhất 2 tín hiệu B/P; cần 5 tín hiệu để đánh giá rõ hơn)</small></div><div class="topGrid">${top.map(m=>`<div class="topOne"><div><b>${m.id}</b> ${liveBadge(m)}</div><div><strong>${pct(m.hit,m.n)}</strong> <small>${m.hit}/${m.n} đúng · 5 gần nhất ${m.lastHit}/${m.lastN}</small></div>${trendHTML(m)}<button type="button" data-top-toggle="${m.id}" class="btn slim">${active.has(m.id)?'✓ Đang bật':'Bật rule này'}</button></div>`).join('')}</div>`:'<div class="noTop">Chưa rule nào có ít nhất 2 tín hiệu B/P đã chấm. Các rule ít mẫu chưa thể đánh giá phong độ.</div>';
+ $('liveRuleTop').querySelectorAll('[data-top-toggle]').forEach(x=>x.onclick=()=>{const id=x.dataset.topToggle;state.autoMode=false;state.enabled=active.has(id)?state.enabled.filter(z=>z!==id):[...state.enabled,id];render();});
+ let rr=ALL.filter(r=>r.id.toLowerCase().includes(needle)||r.feature_names.join(' ').toLowerCase().includes(needle)||r.feature_names.some(h=>humanName(h).toLowerCase().includes(needle)));
+ const fil=$('ruleFilter').value;rr=rr.filter(r=>fil==='all'||(fil==='now'&&live[r.id].current)||(fil==='seen'&&live[r.id].total>0)||(fil==='seen3'&&live[r.id].n>=3)||(fil==='good'&&live[r.id].level==='good')||(fil==='enabled'&&active.has(r.id))); 
+ const rate=(r,key)=>r[key].n?r[key].hit/r[key].n:-1,liveRate=m=>m.n?m.hit/m.n:-1;
+ rr.sort((a,b)=>{
+  const x=live[a.id],y=live[b.id];
+  if(order==='id')return a.id.localeCompare(b.id);
+  if(order==='testN')return b.test.n-a.test.n;
+  if(order==='cvPct')return rate(b,'cv')-rate(a,'cv')||b.cv.n-a.cv.n;
+  if(order==='recentPct'){const a1=recent(x),b1=recent(y);return (b1.n?b1.hit/b1.n:-1)-(a1.n?a1.hit/a1.n:-1)||b1.n-a1.n;}if(order==='currentHealth')return compareLive(x,y);
+  if(order==='currentPct')return liveRate(y)-liveRate(x)||y.n-x.n;
+  if(order==='last5')return (y.lastN?y.lastHit/y.lastN:-1)-(x.lastN?x.lastHit/x.lastN:-1)||y.lastN-x.lastN||y.n-x.n;
+  if(order==='currentN')return y.total-x.total||liveRate(y)-liveRate(x);
+  if(order==='activeNow')return Number(!!y.current)-Number(!!x.current)||y.n-x.n;
+  return rate(b,'test')-rate(a,'test')||b.test.n-a.test.n;
+ });
+ $('enabledCount').textContent=state.enabled.length+'/30 đang bật';
+ const picker=$('rulePicker'),scroll=picker.scrollTop;
+ picker.innerHTML=rr.map(r=>{const m=live[r.id],on=active.has(r.id);
+  return `<label class="pickCard ${on?'selected':''} ${m.level==='good'?'currently-good':''}"><input class="ruleCheckbox" type="checkbox" data-rule="${r.id}" ${on?'checked':''} aria-label="Bật hoặc tắt ${r.id}"/><div class="pickContent">
+  <div class="pickTop"><strong>${r.id}</strong>${liveBadge(m)}${m.current?`<span class="nowFlag ${m.current.pick}">ĐANG BÁO ${m.current.pick}</span>`:''}</div>
+  <div class="pickTag">${escape(r.feature_names.map(humanName).join(' + '))}</div><div class="pickWindow">${windowLabel()}: <b>${recent(m).hit}/${recent(m).n} (${pct(recent(m).hit,recent(m).n)})</b> · ${recent(m).total} lần báo${recent(m).n<3?' · ít mẫu':''}</div>
+  <div class="pickPrimary"><div><b>${pct(m.hit,m.n)}</b><small>Bàn này · ${m.hit} đúng / ${m.n} lượt B/P</small></div><div><b>${m.lastN?pct(m.lastHit,m.lastN):'—'}</b><small>${m.lastHit}/${m.lastN} · 5 gần nhất</small></div><div><b>${m.total}</b><small>Tổng lần báo · ${m.tie} Hòa</small></div></div>
+  <div class="ruleTrend">${trendHTML(m)}<span class="mutedMeta">${m.lastAt?'Lượt báo cuối: '+m.lastAt:'Chưa từng báo trong bàn'}</span></div>
+  <div class="pickSecondary"><span>12 bàn cũ: <b>${pct(r.test.hit,r.test.n)}</b> (${r.test.hit}/${r.test.n})</span><span>40 bàn: <b>${pct(r.train.hit,r.train.n)}</b></span><span>CV: <b>${pct(r.cv.hit,r.cv.n)}</b></span></div>
+  <details class="pickDetail"><summary>${r.patterns.length} mẫu điều kiện của công thức (cố định)</summary>${r.patterns.map(p=>`<p>${escape(describe(r,p))} ⇒ <b class="${p.pick}">${p.pick}</b> (${p.train_hit}/${p.train_n} tập học)</p>`).join('')}</details>
+  </div></label>`;}).join('')||'<p class="hint">Không tìm thấy rule.</p>';
+ picker.scrollTop=scroll;
+ picker.querySelectorAll('.ruleCheckbox').forEach(x=>x.onchange=()=>{const id=x.dataset.rule;state.autoMode=false;state.enabled=x.checked?Array.from(new Set([...state.enabled,id])):state.enabled.filter(y=>y!==id);render();});
+ $('compareList').innerHTML=[3,7,12,20,30].map(n=>{const h=summary12(presets[n]),rules=ALL.filter(r=>presets[n].includes(r.id)),m=presetHealth(b,rules),on=chosenProfile()===n;return `<button type="button" data-compare="${n}" class="compareCard ${on?'selected':''}"><span><strong>${n} rule</strong><small>Cả bàn: ${m.full.hit}/${m.full.n} (${m.full.n?pct(m.full.hit,m.full.n):'—'}) · Lịch sử ${pct(h.hit,h.n)}</small><small>${m.span.startsWith('cả bàn')?m.span:'Gần '+m.span}: ${m.recent.hit}/${m.recent.n} (${m.recent.n?pct(m.recent.hit,m.recent.n):'—'}) · ${m.status} · Sắp báo ${m.next}</small></span><span class="compareNum"><b>${m.full.n?pct(m.full.hit,m.full.n):'—'}</b><small>Cả bàn</small></span><span class="compareArrow">${on?'ĐANG CHỌN':'Chọn'}</span></button>`}).join('');
+ $('compareList').querySelectorAll('[data-compare]').forEach(x=>x.onclick=()=>chooseProfile(Number(x.dataset.compare)));
+}
+function renderStats(){const b=boardActive(),q=review(b),a=enabledRules(),agg=state.autoMode?autoSummary(b):summaryBoard(b,a),rows=a.map(r=>({r,z:q.totals[r.id]}));
+if(state.autoMode){const aw=autoWalk(b);q.entries=aw.rows;rows.length=0;for(const mode of [3,7,12,20,30]){const z=aw.byMode[mode];if(z)rows.push({r:{id:'AUTO '+mode,test:{hit:0,n:0}},z});}}
+$('statsCards').innerHTML=[['Lượt có dự đoán B/P',agg.n],['Đúng',agg.hit],['Sai',agg.miss],['Tỷ lệ đúng',pct(agg.hit,agg.n)],['Hòa',agg.tie],['Xung đột',agg.conflict]].map(([name,value])=>`<div class="stat"><b>${value}</b><span>${name}</span></div>`).join('');
+$('statsRules').innerHTML=rows.sort((x,y)=>(y.z.n?y.z.hit/y.z.n:-1)-(x.z.n?x.z.hit/x.z.n:-1)).map(({r,z})=>`<tr><td><b>${r.id}</b></td><td class="good">${z.hit}</td><td class="bad">${z.miss}</td><td>${z.tie}</td><td>${z.n}</td><td>${pct(z.hit,z.n)}</td><td>${pct(r.test.hit,r.test.n)}</td></tr>`).join('')||'<tr><td colspan="7" class="dim">Chưa chọn rule.</td></tr>';
+$('historyRows').innerHTML=q.entries.slice().reverse().slice(0,500).map(x=>`<tr><td>${x.t}</td><td>${x.id}</td><td class="${x.pick}">${x.pick}</td><td class="${x.actual}">${x.actual}</td><td class="${x.ok===null?'dim':x.ok?'good':'bad'}">${x.ok===null?'Hòa':x.ok?'Đúng':'Sai'}</td><td>${escape(x.cond)}</td></tr>`).join('')||'<tr><td colspan="6" class="dim">Chưa có tín hiệu được chấm.</td></tr>';
+}
+function renderData(){$('demoSelect').innerHTML=DEMOS.map((d,i)=>`<option value="${i}" ${state.demo?.index===i?'selected':''}>${escape(d.name)} · ${d.seq.length} kết quả</option>`).join('');$('demoInfo').textContent=state.demo?`${DEMOS[state.demo.index].name}: đã mở ${state.demo.pos}/${DEMOS[state.demo.index].seq.length} kết quả`:'Chưa mở bàn thử; chọn bàn bên trên và bấm Mở.';$('demoBar').style.width=state.demo?(100*state.demo.pos/DEMOS[state.demo.index].seq.length)+'%':'0%';$('demoPrev').disabled=!state.demo||state.demo.pos<1;$('demoNext').disabled=!state.demo||state.demo.pos>=DEMOS[state.demo.index].seq.length;$('demoFinish').disabled=!state.demo||state.demo.pos>=DEMOS[state.demo.index].seq.length;$('demoExit').disabled=!state.demo;}
+function renderAuto(board,a){
+ const choice=a.current,shown=choice.bestShown,lead=choice.leader,used=a.current.active;
+ document.body.classList.toggle('auto-on',state.autoMode);$('autoToggle').textContent=state.autoMode?'AUTO · BẬT':'AUTO · TẮT';
+ $('autoToggle').classList.toggle('primary',state.autoMode);
+ let header='',reason='';
+ if(!shown){header='CHƯA CÓ TÍN HIỆU';reason='Chưa bộ nào có đủ dữ liệu để đánh giá.';}
+ else if(!lead){header='CHƯA ĐỦ CĂN CỨ';reason='Bộ '+shown.mode+' đang tạm dẫn đầu, nhưng chưa đạt điều kiện tối thiểu để tự bật tín hiệu.';}
+ else if(used){header='AUTO · '+lead.mode+' RULE';reason='Bộ này vừa có phong độ phù hợp và đang phát tín hiệu '+lead.current.pick+' cho lượt tới.';}
+ else {header='AUTO · ĐANG THEO DÕI';reason='Bộ '+lead.mode+' có phong độ gần đây khá hơn, nhưng chưa kích hoạt dự đoán cho lượt tới.';}
+ $('autoCurrent').innerHTML=`<strong>BÀN ĐANG KIỂM TRA: ${escape(board.name)}</strong> · ${board.seq.length} lượt đã nhập ${state.demo?'· <span style="color:#efc77e">DEMO lịch sử</span>':'· Dữ liệu bàn hiện tại'}`;
+ $('autoStatus').innerHTML=`<div><div class="main">${header}</div><div class="desc">${reason}</div></div><div class="side">${shown?shown.span+'<br>'+shown.hit+'/'+shown.sz+' đúng':'—'}</div>`;
+ $('autoGrid').innerHTML=choice.profiles.map(p=>{const leading=lead?.mode===p.mode,em=p.current?.pick&&!p.current.conflict?' · ĐANG BÁO '+p.current.pick:'';return `<div class="autoMini ${leading?'leader':''}"><div class="n">${p.mode} rule</div><div class="r ${p.ok?'good':(p.sz>=3?'poor':'')}">${pct(p.hit,p.sz)}</div><div class="m">${p.hit}/${p.sz} · ${p.span}</div><div class="m">3 tín hiệu: ${p.recentHit}/${p.recentN}</div><div class="tiny">${p.sz<3?'Ít mẫu':p.ok?'Khá gần đây':'Chưa đạt'}${em}</div></div>`}).join('');
+ $('autoStat').innerHTML=`<b>AUTO trên bàn này:</b> ${a.hit}/${a.n} đúng (${pct(a.hit,a.n)}) · ${a.tie} Hòa · ${a.signals} lần báo trong bàn. <span style="color:#8fabb8">Mỗi lượt chọn bằng dữ liệu bàn này đã có trước lúc mở kết quả. Đây là thống kê, không phải dự đoán chắc chắn.</span>`;
+}
+function render(){
+ const b=boardActive(),aInfo=autoWalk(b),current=state.autoMode?(aInfo.current.leader?.mode||null):chosenProfile();
+ $('activeBoardBanner').innerHTML=`<span class="boardPulse"></span><b>${escape(b.name)}</b> · ${b.seq.length} lượt · B ${b.seq.filter(x=>x==='B').length} / P ${b.seq.filter(x=>x==='P').length} / H ${b.seq.filter(x=>x==='H').length} <span>${state.demo?'DEMO · dữ liệu cũ':'AUTO chỉ dùng bàn này'}</span>`;
+ // All five presets are scored independently on the CURRENT board, even if not selected.
+ // This is retrospective hit rate of previously emitted B/P signals, not future probability.
+ $('modeButtons').innerHTML=[3,7,12,20,30].map(n=>{
+   const rules=ALL.filter(r=>presets[n].includes(r.id)),m=presetHealth(b,rules),h=summary12(presets[n]);
+   const fullRate=m.full.n?pct(m.full.hit,m.full.n):'—';
+   const recentRate=m.recent.n?pct(m.recent.hit,m.recent.n):'—';
+   const nextTone=m.next==='B'?'B':m.next==='P'?'P':m.next==='XUNG ĐỘT'?'conflict':'wait';
+   return `<button type="button" class="modeBtn ${current===n?'selected':''}" data-mode="${n}" aria-label="${n} rule. Cả ván ${fullRate}, ${m.full.hit}/${m.full.n}. Gần đây ${m.span} ${recentRate}, ${m.recent.hit}/${m.recent.n}. ${m.status}. Tín hiệu lượt tiếp theo ${m.next}. Chạm để chọn">
+     <span class="modeTop"><span class="modeTag">${n} rule</span><span class="modeNext ${nextTone}">${m.next}</span></span>
+     <span class="modeFull"><strong>${fullRate}</strong><span>${m.full.hit}/${m.full.n} cả ván</span></span>
+     <span class="modeRecent"><span>${m.span.startsWith('cả bàn')?m.span:'Gần '+m.span}</span><strong>${recentRate} <em>${m.recent.hit}/${m.recent.n}</em></strong></span>
+     <span class="modeBottom ${m.tone}">${m.status}</span>
+     <span class="modeHiddenHistory" aria-hidden="true">${pct(h.hit,h.n)} lịch sử</span>
+   </button>`;
+ }).join('');
+ $('modeButtons').querySelectorAll('[data-mode]').forEach(x=>x.onclick=()=>chooseProfile(Number(x.dataset.mode)));
+$('windowMeta').textContent=windowLabel()+' · '+b.seq.length+' lượt đã nhập';
+ renderAuto(b,aInfo);
+$('windowOptions').querySelectorAll('[data-lookback]').forEach(x=>{x.classList.toggle('selected',Number(x.dataset.lookback)===state.lookback);x.onclick=()=>{state.lookback=Number(x.dataset.lookback);render();};});
+ main();if(tab==='rules')renderRules();if(tab==='stats')renderStats();if(tab==='data')renderData();store();
+}
+function add(x){if(state.demo)return;boardActive().seq.push(x);state.redo=[];render();}
+function makeBoard(name,seq=[],origin=0){const b={id:'manual_'+Date.now()+'_'+Math.random().toString(36).slice(2,7),name:name||'Bàn mới',seq,origin};state.boards.push(b);state.chosen=b.id;state.demo=null;state.redo=[];render();return b;}
+function normalize(v){if(typeof v!=='string')return null;let s=v.trim().toUpperCase();return s==='B'||s==='BANKER'?'B':s==='P'||s==='PLAYER'?'P':['H','T','HOA','HÒA','TIE','DRAW'].includes(s)?'H':null;}
+function rank(x){x=String(x).toUpperCase().trim();return x==='A'?1:['10','0','T','J','Q','K'].includes(x)?0:(/^[2-9]$/.test(x)?Number(x):null);}
+function asOutcome(x){if(typeof x==='string')return normalize(x);if(!x||typeof x!=='object')return null;let direct=normalize(x.result??x.outcome??x.winner??x.side??x.win??x.value);if(direct)return direct;let pc=x.p??x.player??x.playerCards??x.cards?.p,bc=x.b??x.banker??x.bankerCards??x.cards?.b;if(Array.isArray(pc)&&Array.isArray(bc)){let p=pc.map(rank),b=bc.map(rank);if(p.includes(null)||b.includes(null))return null;let ps=p.reduce((s,x)=>s+x,0)%10,bs=b.reduce((s,x)=>s+x,0)%10;return ps===bs?'H':ps>bs?'P':'B';}return null;}
+function parseImport(raw,name){let json=null;try{json=JSON.parse(raw);}catch{}let out=[];const part=(x,label)=>{let seq=[],origin=0;if(Array.isArray(x)){seq=x.map(asOutcome).filter(Boolean);}else if(x&&typeof x==='object'){if(Array.isArray(x.cols))seq=x.cols.flatMap(c=>Array.isArray(c)?c:[]).map(asOutcome).filter(Boolean);else if(Array.isArray(x.seq))seq=x.seq.map(asOutcome).filter(Boolean);else if(typeof x.seq==='string')seq=x.seq.split('').map(normalize).filter(Boolean);else if(Array.isArray(x.results))seq=x.results.map(asOutcome).filter(Boolean);else if(Array.isArray(x.hands))seq=x.hands.map(asOutcome).filter(Boolean);else if(Array.isArray(x.records))seq=x.records.map(asOutcome).filter(Boolean);else if(Array.isArray(x.rounds))seq=x.rounds.map(asOutcome).filter(Boolean);else if(Array.isArray(x.state?.hands))seq=x.state.hands.map(asOutcome).filter(Boolean);origin=Number(x.origin)||0;if(x.state?.startRound&&!x.origin)origin=Math.max(0,Number(x.state.startRound)-1)||0;label=x.name||label;}if(seq.length)out.push({name:label,seq,origin});};
+if(json){if(Array.isArray(json.boards))json.boards.forEach((b,i)=>part(b,name+' '+(i+1)));else part(json,name);}else{let stripped=raw.toUpperCase().replace(/[\s,;|/\-]+/g,'');if(/^[BPHT]+$/.test(stripped)&&stripped)out.push({name,seq:stripped.split('').map(x=>x==='T'?'H':x),origin:0});else{let xs=raw.trim().split(/[\s,;|/]+/).map(normalize).filter(Boolean);if(xs.length)out.push({name,seq:xs,origin:0});}}if(!out.length)throw new Error('Không đọc được chuỗi B/P/H hay backup JSON.');return out;}
+function download(file,text,mime){let blob=new Blob([text],{type:mime}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=file;a.click();setTimeout(()=>URL.revokeObjectURL(url),3000);}
+function exportCSV(){let q=review(boardActive());let rows=[['Lượt','Rule','Dự đoán','Thực tế','Đúng_sai','Điều kiện']];for(let e of q.entries)rows.push([e.t,e.id,e.pick,e.actual,e.ok===null?'HOA':e.ok?'DUNG':'SAI',e.cond]);download('BangKhoi_v32_HienTai_DungSai.csv','\ufeff'+rows.map(r=>r.map(x=>'"'+String(x).replaceAll('"','""')+'"').join(',')).join('\r\n'),'text/csv;charset=utf-8');}
+function wire(){document.querySelectorAll('.tabs button').forEach(x=>x.onclick=()=>setTab(x.dataset.tab));
+$('viewModeDetails').onclick=()=>setTab('rules');$('autoToggle').onclick=()=>{state.autoMode=!state.autoMode;render();};$('gotoRuleSettings').onclick=()=>setTab('rules');
+$('addB').onclick=()=>add('B');$('addP').onclick=()=>add('P');$('addH').onclick=()=>add('H');
+$('undo').onclick=()=>{const b=boardActive();if(!state.demo&&b.seq.length){state.redo.push(b.seq.pop());render();}};
+$('redo').onclick=()=>{if(!state.demo&&state.redo.length){boardActive().seq.push(state.redo.pop());render();}};
+$('boardNew').onclick=()=>{const name=prompt('Tên bàn mới:','Bàn '+(state.boards.length+1));if(name!==null)makeBoard(name);};
+$('boardRename').onclick=()=>{let b=boardActive();if(!state.demo){let n=prompt('Tên bàn:',b.name);if(n){b.name=n;render();}}};
+$('boardClear').onclick=()=>{if(!state.demo&&confirm('Xóa dữ liệu của bàn hiện tại?')){boardActive().seq=[];state.redo=[];render();}};
+$('boardSelect').onchange=()=>{state.chosen=$('boardSelect').value;state.demo=null;render();};
+$('goStats').onclick=()=>setTab('stats');
+for(const id of ['ruleSearch','ruleOrder','ruleFilter'])$(id).addEventListener(id==='ruleSearch'?'input':'change',renderRules);
+$('demoOpen').onclick=()=>{state.demo={index:Number($('demoSelect').value)||0,pos:0};setTab('main');};
+$('demoPrev').onclick=()=>{if(state.demo){state.demo.pos=Math.max(0,state.demo.pos-1);render();}};
+$('demoNext').onclick=()=>{if(state.demo){state.demo.pos=Math.min(DEMOS[state.demo.index].seq.length,state.demo.pos+1);render();}};
+$('demoFinish').onclick=()=>{if(state.demo){state.demo.pos=DEMOS[state.demo.index].seq.length;render();}};
+$('demoExit').onclick=()=>{state.demo=null;render();};
+const importSome=(raw,name)=>{const arr=parseImport(raw,name);let backup=null;try{backup=JSON.parse(raw);}catch{}if(Array.isArray(backup?.enabledRuleIds))state.enabled=backup.enabledRuleIds.filter(id=>presets[30].includes(id));if(typeof backup?.autoMode==='boolean')state.autoMode=backup.autoMode;for(const d of arr)makeBoard(d.name,d.seq,d.origin);setTab('main');notify('Đã nhập '+arr.length+' bàn, '+arr.reduce((s,x)=>s+x.seq.length,0)+' lượt; '+state.enabled.length+' rule đang bật.');};
+$('importPaste').onclick=()=>{try{importSome($('pasteText').value,'Chuỗi dán');}catch(e){notify('Lỗi: '+e.message);}};
+$('importFile').onchange=async e=>{const f=e.target.files?.[0];if(f)try{importSome(await f.text(),f.name);}catch(e){notify('Lỗi: '+e.message);}e.target.value='';};
+$('loadC10').onclick=()=>{makeBoard('C10 (20 lượt từ ảnh)',('BBPBBP'+'PPPPPP'+'BBBBBB'+'BH').split(''),0);setTab('main');notify('Đã nạp bàn C10: 20 kết quả B/P/H.');};
+$('exportJson').onclick=()=>download('BangKhoi_Lab_v32_HienTai_Backup.json',JSON.stringify({format:'BangKhoiLab',version:10,exportedAt:new Date().toISOString(),boards:state.boards,enabledRuleIds:state.enabled,autoMode:state.autoMode},null,2),'application/json');
+$('exportResults').onclick=exportCSV;$('exportRoundCsv').onclick=exportCSV;
+document.addEventListener('keydown',e=>{if(/INPUT|SELECT|TEXTAREA/.test(e.target.tagName)||e.ctrlKey||e.metaKey||e.altKey)return;if(tab==='main'&&['B','P','H'].includes(e.key.toUpperCase()))add(e.key.toUpperCase());});
+}
+wire();render();window.__LAB_TEST__={presetHealth,features,predict,review,ALL,DEMOS,parseImport,votes,summary12,summaryBoard,stageSummary,liveBreakdown,autoData,autoAt,autoWalk,chooseProfile,getState:()=>state,setWindow:(n)=>{state.lookback=n;render();}};
+})();
+</script><script>if('serviceWorker' in navigator && location.protocol === 'https:'){window.addEventListener('load',()=>navigator.serviceWorker.register('./lab-sw.js').catch(()=>{}));}</script></body></html>
